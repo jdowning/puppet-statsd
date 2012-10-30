@@ -7,23 +7,20 @@ class statsd(
   # Unstable repo has nodejs in it!
   include apt::debian::unstable
 
-  package{
-    'nodejs':;
-    'statsd':
-      require => Package['nodejs'];
-  }
+  require nodejs
+
+  package { 'statsd': ensure => present, }
 
 
-  # This will get moved off at one point I am sure.
-  file{
+  file {
     '/etc/statsd/rdioConfig.js':
-      content => "{ graphitePort: ${graphiteport} , graphiteHost: \"${graphiteserver}\" , port: ${listenport} }",
+      content => template('statsd/rdioConfig.js.erb'),
       owner   => 'root',
       group   => 'root',
       mode    => '0444',
       require => Package['statsd'];
     '/etc/init.d/statsd':
-      source  => 'puppet:///modules/statsd/statsdinitscript',
+      source  => 'puppet:///modules/statsd/statsd-init',
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
@@ -35,11 +32,15 @@ class statsd(
       mode   => '0770',
   }
 
-  service{ 'statsd':
+  service { 'statsd':
     ensure    => running,
     enable    => true,
     hasstatus => false,
     pattern   => 'node .*stats.js',
-    require   => [ File['/etc/init.d/statsd'], File['/etc/init.d/statsd'], File['/var/log/statsd'], ]
+    require   => [
+      File['/etc/init.d/statsd'],
+      File['/etc/init.d/statsd'],
+      File['/var/log/statsd'],
+    ],
   }
 }
