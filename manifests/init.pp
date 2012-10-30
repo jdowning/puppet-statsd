@@ -1,11 +1,11 @@
 class statsd(
-  $graphiteserver = 'graphite.dc1.puppetlabs.net',
-  $graphiteport   = '2003',
-  $listenport     = '8125'
+  $graphiteserver,
+  $graphiteport     = '2003',
+  $address          = '0.0.0.0',
+  $listenport       = '8125',
+  $flushinterval    = '10000',
+  $percentthreshold = ['90'],
 ) {
-
-  # Unstable repo has nodejs in it!
-  include apt::debian::unstable
 
   require nodejs
 
