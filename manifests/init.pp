@@ -5,16 +5,28 @@ class statsd(
   $listenport       = '8125',
   $flushinterval    = '10000',
   $percentthreshold = ['90'],
+  $ensure           = 'present',
+  $provider         = 'npm',
 ) {
 
   require nodejs
 
-  package { 'statsd': ensure => present, }
+  package { 'statsd':
+    ensure   => $ensure,
+    provider => $provider,
+  }
 
+  $configfile = '/etc/statsd/localConfig.js'
+  $logfile    = '/var/log/statsd/statsd.log'
 
   file {
-    '/etc/statsd/rdioConfig.js':
-      content => template('statsd/rdioConfig.js.erb'),
+    '/etc/statsd':
+      ensure => directory,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755';
+    $configfile:
+      content => template('statsd/localConfig.js.erb'),
       owner   => 'root',
       group   => 'root',
       mode    => '0444',
@@ -23,13 +35,22 @@ class statsd(
       source  => 'puppet:///modules/statsd/statsd-init',
       owner   => 'root',
       group   => 'root',
-      mode    => '0755',
-      require => Package['statsd'];
+      mode    => '0755';
+    '/etc/default/statsd':
+      content => template('statsd/statsd-defaults.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755';
     '/var/log/statsd':
       ensure => directory,
       owner  => 'root',
       group  => 'nogroup',
-      mode   => '0770',
+      mode   => '0770';
+    '/usr/local/sbin/statsd':
+      source  => 'puppet:///modules/statsd/statsd-wrapper',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755';
   }
 
   service { 'statsd':
@@ -37,10 +58,13 @@ class statsd(
     enable    => true,
     hasstatus => false,
     pattern   => 'node .*stats.js',
-    require   => [
+    require   => File['/var/log/statsd'],
+    subscribe => [
       File['/etc/init.d/statsd'],
-      File['/etc/init.d/statsd'],
-      File['/var/log/statsd'],
+      File['/etc/default/statsd'],
+      File['/usr/local/sbin/statsd'],
+      File[$configfile],
+      Package['statsd'],
     ],
   }
 }
