@@ -1,5 +1,5 @@
-name 'ploperations-network'
-version '1.0.0'
+name 'ploperations-statsd'
+version '1.0.1'
 author 'Adrien Thebo <adrien@puppetlabs.com>'
 license 'Apache 2.0'
 
