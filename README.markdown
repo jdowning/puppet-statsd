@@ -23,12 +23,6 @@ that you install statds via npm. The most recent version of statds in Debian
 Sid is 0.0.2, which is so old that the current documentation doesn't even
 remotely apply.
 
-Caveats
--------
-
-Since statsd is a node application it doesn't play well with normal init script
-behavior; this is odd behavior that isn't easy to fix.
-
 Contributors
 ------------
 
