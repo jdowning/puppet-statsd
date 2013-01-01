@@ -1,8 +1,14 @@
 {
-  graphitePort: "<%= graphiteport %>"
+  backends: [<% backends.each do |backend| -%>
+  "<%= backend %>",
+  <% end -%>]
+, graphitePort: "<%= graphiteport %>"
 , graphiteHost: "<%= graphiteserver %>"
 , address: "<%= address %>"
 , listen: "<%= listenport %>"
 , flushInterval: "<%= flushinterval %>"
 , percentThreshold: [<%= percentthreshold.join(', ') %>]
+<% config.each do |k, v| -%>
+, <%= k %>: <%= v %>
+<% end -%>
 }
