@@ -53,7 +53,7 @@ inherits statsd::params {
   }
   file { '/var/log/statsd':
     ensure => directory,
-    owner  => 'root',
+    owner  => 'nobody',
     group  => 'root',
     mode   => '0770',
   }
