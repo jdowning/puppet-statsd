@@ -1,15 +1,17 @@
 class statsd(
-  $graphiteserver   = 'localhost',
-  $graphiteport     = '2003',
-  $backends         = [ 'graphite' ],
-  $address          = '0.0.0.0',
-  $listenport       = '8125',
-  $flushinterval    = '10000',
-  $percentthreshold = ['90'],
-  $ensure           = 'present',
-  $provider         = 'npm',
-  $config           = { }) 
-inherits statsd::params {
+  $graphiteserver   = $statsd::params::graphiteserver,
+  $graphiteport     = $statsd::params::graphiteport,
+  $backends         = $statsd::params::backends,
+  $address          = $statsd::params::address,
+  $listenport       = $statsd::params::listenport,
+  $flushinterval    = $statsd::params::flushinterval,
+  $percentthreshold = $statsd::params::percentthreshold,
+  $ensure           = $statsd::params::ensure,
+  $provider         = $statsd::params::provider,
+  $config           = $statsd::params::config,
+  $statsjs          = $statsd::params::statsjs,
+  $init_script      = $statsd::params::init_script,
+) inherits statsd::params {
 
   require nodejs
 
@@ -21,8 +23,6 @@ inherits statsd::params {
 
   $configfile  = '/etc/statsd/localConfig.js'
   $logfile     = '/var/log/statsd/statsd.log'
-  $statsjs     = $statsd::params::statsjs
-  $init_script = $statsd::params::init_script
 
   file { '/etc/statsd':
     ensure => directory,
