@@ -1,4 +1,16 @@
-class statsd::params($node_module_dir  = '') {
+class statsd::params {
+  $graphiteserver   = 'localhost'
+  $graphiteport     = '2003'
+  $backends         = [ 'graphite' ]
+  $address          = '0.0.0.0'
+  $listenport       = '8125'
+  $flushinterval    = '10000'
+  $percentthreshold = ['90']
+  $ensure           = 'present'
+  $provider         = 'npm'
+  $config           = { }
+  $node_module_dir  = ''
+
   case $::osfamily {
     'RedHat': {
       $init_script = 'puppet:///modules/statsd/statsd-init-rhel'
@@ -32,7 +44,4 @@ class statsd::params($node_module_dir  = '') {
       fail('Unsupported OS Family')
     }
   }
-  
-  
-  
 }
