@@ -1,7 +1,7 @@
 class statsd::params {
   $graphiteserver   = 'localhost'
   $graphiteport     = '2003'
-  $backends         = [ 'graphite' ]
+  $backends         = [ './backends/graphite' ]
   $address          = '0.0.0.0'
   $listenport       = '8125'
   $flushinterval    = '10000'
