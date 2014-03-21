@@ -11,9 +11,10 @@ class statsd(
   $config           = $statsd::params::config,
   $statsjs          = $statsd::params::statsjs,
   $init_script      = $statsd::params::init_script,
+  $node_version     = $statsd::params::node_version,
 ) inherits statsd::params {
 
-  require nodejs
+  class { '::nodejs': version => $node_version }
 
   package { 'statsd':
     ensure   => $ensure,
