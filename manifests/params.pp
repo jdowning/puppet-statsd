@@ -10,6 +10,7 @@ class statsd::params {
   $provider         = 'npm'
   $config           = { }
   $node_module_dir  = ''
+  $node_manage      = true
   $node_version     = 'present'
 
   case $::osfamily {

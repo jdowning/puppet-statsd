@@ -11,10 +11,13 @@ class statsd(
   $config           = $statsd::params::config,
   $statsjs          = $statsd::params::statsjs,
   $init_script      = $statsd::params::init_script,
+  $node_manage      = $statsd::params::node_manage,
   $node_version     = $statsd::params::node_version,
 ) inherits statsd::params {
 
-  class { '::nodejs': version => $node_version }
+  if $node_manage == true {
+    class { '::nodejs': version => $node_version }
+  }
 
   package { 'statsd':
     ensure   => $ensure,
