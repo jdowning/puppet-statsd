@@ -2,14 +2,11 @@ require 'spec_helper'
 
 describe 'statsd' do
 
-  let(:facts) {{
-    :kernel          => 'Linux',
-    :operatingsystem => 'CentOS',
-    :operatingsystemrelease => '6.2',
-    :osfamily        => 'RedHat',
-    :architecture    => 'x86_64'
-  }}
+  let(:facts) { { :osfamily => 'Debian' } }
 
+  it { should contain_class("statsd::params") }
+  it { should contain_statsd__config }
+  it { should contain_package('statsd').with_ensure('present') }
   it { should contain_service('statsd').with_ensure('running') }
 
 end

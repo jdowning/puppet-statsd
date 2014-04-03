@@ -1,3 +1,4 @@
 forge 'http://forge.puppetlabs.com'
 
-mod 'puppetlabs/nodejs', '>= 0.2.0'
+mod 'puppetlabs/nodejs',
+  :git => "git://github.com/puppetlabs/puppetlabs-nodejs.git"

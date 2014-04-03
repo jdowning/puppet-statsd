@@ -1,29 +1,32 @@
-puppet-statsd
-=============
+# puppet-statsd
 
-Manage Statsd with Puppet
+[![Build Status](https://travis-ci.org/justindowning/puppet-influxdb.png)](https://travis-ci.org/justindowning/puppet-influxdb)
 
-Synopsis
---------
+## Description
 
+This Puppet module will install [statsd](https://github.com/etsy/statsd/) on Debian or RedHat.
+
+## Installation
+
+`puppet module install --modulepath /path/to/puppet/modules jdowning-statsd`
+
+## Usage
+```puppet
     class { 'statsd':
-      graphiteserver   => 'my.graphite.server',
+      graphite_host    => 'my.graphite.host',
+      influxdb_host    => 'my.influxdb.host',
       flushinterval    => 1000, # flush every second
       percentthreshold => [75, 90, 99],
       address          => '10.20.1.2',
       listenport       => 2158,
       provider         => npm,
     }
+```
 
-Notes
------
+## Testing
 
-To ensure that you have a fairly recent version of statsd, it's recommended
-that you install statds via npm. The most recent version of statds in Debian
-Sid is 0.0.2, which is so old that the current documentation doesn't even
-remotely apply.
-
-Contributors
-------------
-
-  * Thanks to Ben Hughes (ben@puppetlabs.com) for initial implementation
+```
+bundle install
+bundle librarian-puppet install
+vagrant up
+```

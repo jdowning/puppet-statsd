@@ -2,13 +2,30 @@
   backends: [<% @backends.each do |backend| -%>
   "<%= backend %>",
   <% end -%>]
-, graphitePort: "<%= @graphiteport %>"
-, graphiteHost: "<%= @graphiteserver %>"
 , address: "<%= @address %>"
 , port: "<%= @listenport %>"
 , flushInterval: "<%= @flushinterval %>"
 , percentThreshold: [<%= @percentthreshold.join(', ') %>]
+, graphitePort: "<%= @graphite_port %>"
+, graphiteHost: "<%= @graphite_host %>"
 <% @config.each do |k, v| -%>
 , <%= k %>: <%= v %>
+<% end -%>
+<% if @influxdb_host -%>
+, influxdb: {
+    host: "<%= @influxdb_host %>",
+    port: 8086,          // InfluxDB port. (default 8086)
+    database: "dbname",  // InfluxDB database instance. (required)
+    username: "user",    // InfluxDB database username. (required)
+    password: "pass",    // InfluxDB database password. (required)
+    flush: {
+      enable: true       // Enable regular flush strategy. (default true)
+    },
+    proxy: {
+      enable: false,       // Enable the proxy strategy. (default false)
+      suffix: "raw",       // Metric name suffix. (default "raw")
+      flushInterval: "<%= @flushinterval %>"
+    }
+  }
 <% end -%>
 }

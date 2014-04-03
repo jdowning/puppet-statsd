@@ -3,8 +3,9 @@
 .project
 .librarian/
 .tmp/
-pkg/
+.vagrant/
 doc/
+modules/
+pkg/
 spec/fixtures/manifests/
 spec/fixtures/modules/
-.vagrant/

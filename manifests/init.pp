@@ -1,72 +1,27 @@
-class statsd(
-  $graphiteserver   = $statsd::params::graphiteserver,
-  $graphiteport     = $statsd::params::graphiteport,
+# == Class statsd
+class statsd (
+  $ensure           = $statsd::params::ensure,
+  $config           = $statsd::params::config,
+  $graphite_host    = $statsd::params::graphite_host,
+  $graphite_port    = $statsd::params::graphite_port,
+  $influxdb_host    = $statsd::params::influxdb_host,
   $backends         = $statsd::params::backends,
   $address          = $statsd::params::address,
   $listenport       = $statsd::params::listenport,
   $flushinterval    = $statsd::params::flushinterval,
   $percentthreshold = $statsd::params::percentthreshold,
-  $ensure           = $statsd::params::ensure,
-  $provider         = $statsd::params::provider,
-  $config           = $statsd::params::config,
   $statsjs          = $statsd::params::statsjs,
   $init_script      = $statsd::params::init_script,
   $node_manage      = $statsd::params::node_manage,
   $node_version     = $statsd::params::node_version,
 ) inherits statsd::params {
 
-  if $node_manage == true {
-    class { '::nodejs': version => $node_version }
-  }
+  class { 'statsd::config': }
 
   package { 'statsd':
     ensure   => $ensure,
-    provider => $provider,
-    notify  => Service['statsd'],
-  }
-
-  $configfile  = '/etc/statsd/localConfig.js'
-  $logfile     = '/var/log/statsd/statsd.log'
-
-  file { '/etc/statsd':
-    ensure => directory,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-  } ->
-  file { $configfile:
-    content => template('statsd/localConfig.js.erb'),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0444',
-    notify  => Service['statsd'],
-  }
-  file { '/etc/init.d/statsd':
-    source  => $init_script,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    notify  => Service['statsd'],
-  }
-  file {  '/etc/default/statsd':
-    content => template('statsd/statsd-defaults.erb'),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    notify  => Service['statsd'],
-  }
-  file { '/var/log/statsd':
-    ensure => directory,
-    owner  => 'nobody',
-    group  => 'root',
-    mode   => '0770',
-  }
-  file { '/usr/local/sbin/statsd':
-    source  => 'puppet:///modules/statsd/statsd-wrapper',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    notify  => Service['statsd'],
+    provider => 'npm',
+    notify   => Service['statsd'],
   }
 
   service { 'statsd':

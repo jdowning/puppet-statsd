@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-group :rake do
-  gem 'puppet',       '>=3.0.1'
-  gem 'rspec-puppet', '>=0.1.3'
-  gem 'rake',         '>=0.9.2.2'
-  gem 'puppet-lint',  '>=0.1.12'
-  gem 'puppetlabs_spec_helper'
-  gem 'puppet-blacksmith', '>=1.0.1'
-  gem 'librarian-puppet-maestrodev', '>=0.9.7.4'
-end
+puppetversion = ENV.key?('PUPPET_GEM_VERSION') ? "= #{ENV['PUPPET_GEM_VERSION']}" : ['>= 3.4']
+
+gem 'rake'
+gem 'librarian-puppet'
+gem 'puppet', puppetversion
+gem 'puppet-blacksmith'
+gem 'puppet-lint'
+gem 'puppetlabs_spec_helper'
+#gem 'librarian-puppet-maestrodev', '>=0.9.7.4'

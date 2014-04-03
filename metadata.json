@@ -1,0 +1,71 @@
+{
+  "name": "jdowning/statsd",
+  "version": "1.0.0",
+  "source": "https://github.com/justindowning/puppet-statsd",
+  "author": "Justin Downing",
+  "license": "Apache License, Version 2.0",
+  "summary": "Setup and manage statsd",
+  "description": "Setup and manage statsd",
+  "project_page": "https://github.com/justindowning/puppet-statsd",
+  "dependencies": [
+    {
+      "name": "puppetlabs/nodejes",
+      "version_requirement": ">= 0.2.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "10.04",
+        "12.04",
+        "14.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": "3.2.x"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ]
+}
