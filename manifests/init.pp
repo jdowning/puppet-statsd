@@ -1,19 +1,26 @@
 # == Class statsd
 class statsd (
   $ensure           = $statsd::params::ensure,
-  $config           = $statsd::params::config,
-  $graphite_host    = $statsd::params::graphite_host,
-  $graphite_port    = $statsd::params::graphite_port,
-  $influxdb_host    = $statsd::params::influxdb_host,
+  $port             = $statsd::params::port,
+  $graphiteHost     = $statsd::params::graphiteHost,
+  $graphiteport     = $statsd::params::graphitePort,
+
   $backends         = $statsd::params::backends,
+  $debug            = $statsd::params::debug,
   $address          = $statsd::params::address,
-  $listenport       = $statsd::params::listenport,
-  $flushinterval    = $statsd::params::flushinterval,
-  $percentthreshold = $statsd::params::percentthreshold,
-  $statsjs          = $statsd::params::statsjs,
+  $mgmt_address     = $statsd::params::mgmt_address,
+  $mgmt_port        = $statsd::params::mgmt_port,
+  $title            = $statsd::params::title,
+  $healthStatus     = $statsd::params::healthStatus,
+  $dumpMessages     = $statsd::params::dumpMessages,
+  $flushInterval    = $statsd::params::flushInterval,
+  $percentThreshold = $statsd::params::percentThreshold,
+  $flush_counts     = $statsd::params::flush_counts,
+
+  $influxdb_host    = $statsd::params::influxdb_host,
+  $config           = $statsd::params::config,
+
   $init_script      = $statsd::params::init_script,
-  $node_manage      = $statsd::params::node_manage,
-  $node_version     = $statsd::params::node_version,
 ) inherits statsd::params {
 
   class { 'statsd::config': }

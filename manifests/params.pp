@@ -1,18 +1,25 @@
 # == Class statsd::params
 class statsd::params {
   $ensure           = 'present'
-  $config           = { }
-  $graphite_host    = 'localhost'
-  $graphite_port    = '2003'
-  $influxdb_host    = ''
+  $port             = '8125'
+
+  $graphiteHost    = 'localhost'
+  $graphitePort    = '2003'
+
   $backends         = [ './backends/graphite' ]
+  $debug            = false
   $address          = '0.0.0.0'
-  $listenport       = '8125'
+  $mgmt_address     = '0.0.0.0'
+  $mgmt_port        = '8126'
+  $title            = 'statsd'
+  $healthStatus     = 'up'
+  $dumpMessages     = false
   $flushinterval    = '10000'
   $percentthreshold = ['90']
-  $node_module_dir  = ''
-  $node_manage      = true
-  $node_version     = 'present'
+  $flush_counts     = true
+
+  $influxdb_host    = ''
+  $config           = { }
 
   case $::osfamily {
     'RedHat', 'Amazon': {
