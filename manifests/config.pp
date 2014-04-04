@@ -12,42 +12,37 @@ class statsd::config {
 
   file { '/etc/statsd':
     ensure => directory,
-    owner  => 'root',
-    group  => 'root',
     mode   => '0755',
   }->
   file { $configfile:
     content => template('statsd/localConfig.js.erb'),
-    owner   => 'root',
-    group   => 'root',
     mode    => '0444',
-    notify  => Service['statsd'],
   }
+
   file { '/etc/init.d/statsd':
     source  => $statsd::init_script,
-    owner   => 'root',
-    group   => 'root',
     mode    => '0755',
-    notify  => Service['statsd'],
   }
+
   file {  '/etc/default/statsd':
     content => template('statsd/statsd-defaults.erb'),
-    owner   => 'root',
-    group   => 'root',
     mode    => '0755',
-    notify  => Service['statsd'],
   }
+
   file { '/var/log/statsd':
     ensure => directory,
-    owner  => 'nobody',
-    group  => 'root',
     mode   => '0770',
   }
+
   file { '/usr/local/sbin/statsd':
     source  => 'puppet:///modules/statsd/statsd-wrapper',
-    owner   => 'root',
-    group   => 'root',
     mode    => '0755',
-    notify  => Service['statsd'],
   }
+
+  File {
+    owner  => 'root',
+    group  => 'root',
+    notify => Service['statsd'],
+  }
+
 }

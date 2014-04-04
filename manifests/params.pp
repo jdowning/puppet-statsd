@@ -1,5 +1,7 @@
 # == Class statsd::params
 class statsd::params {
+  $ensure           = 'present'
+  $config           = { }
   $graphite_host    = 'localhost'
   $graphite_port    = '2003'
   $influxdb_host    = ''
@@ -8,8 +10,6 @@ class statsd::params {
   $listenport       = '8125'
   $flushinterval    = '10000'
   $percentthreshold = ['90']
-  $ensure           = 'present'
-  $config           = { }
   $node_module_dir  = ''
   $node_manage      = true
   $node_version     = 'present'

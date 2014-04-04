@@ -21,14 +21,12 @@ class statsd (
   package { 'statsd':
     ensure   => $ensure,
     provider => 'npm',
-    notify   => Service['statsd'],
   }
 
   service { 'statsd':
     ensure    => running,
     enable    => true,
     hasstatus => true,
-    pattern   => 'node .*stats.js',
-    require   => File['/var/log/statsd'],
+    require   => [ Package['statsd'], File['/var/log/statsd'] ],
   }
 }
