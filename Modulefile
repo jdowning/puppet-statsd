@@ -1,5 +1,5 @@
 name    'jdowning/statsd'
-version '1.0.1'
+version '1.0.2'
 source 'https://github.com/justindowning/puppet-statsd'
 author 'Justin Downing'
 license 'Apache License, Version 2.0'
