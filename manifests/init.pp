@@ -10,7 +10,7 @@ class statsd (
   $address          = $statsd::params::address,
   $mgmt_address     = $statsd::params::mgmt_address,
   $mgmt_port        = $statsd::params::mgmt_port,
-  $title            = $statsd::params::title,
+  $statsd_title     = $statsd::params::statsd_title,
   $healthStatus     = $statsd::params::healthStatus,
   $dumpMessages     = $statsd::params::dumpMessages,
   $flushInterval    = $statsd::params::flushInterval,
@@ -20,6 +20,7 @@ class statsd (
   $influxdb_host    = $statsd::params::influxdb_host,
   $config           = $statsd::params::config,
 
+  $node_module_dir  = $statsd::params::node_module_dir,
   $init_script      = $statsd::params::init_script,
 ) inherits statsd::params {
 

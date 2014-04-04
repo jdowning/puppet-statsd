@@ -11,15 +11,17 @@ class statsd::params {
   $address          = '0.0.0.0'
   $mgmt_address     = '0.0.0.0'
   $mgmt_port        = '8126'
-  $title            = 'statsd'
+  $statsd_title     = 'statsd'
   $healthStatus     = 'up'
   $dumpMessages     = false
-  $flushinterval    = '10000'
-  $percentthreshold = ['90']
+  $flushInterval    = '10000'
+  $percentThreshold = ['90']
   $flush_counts     = true
 
   $influxdb_host    = ''
   $config           = { }
+
+  $node_module_dir  = ''
 
   case $::osfamily {
     'RedHat', 'Amazon': {
