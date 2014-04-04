@@ -22,9 +22,9 @@
 , influxdb: {
     host: "<%= @influxdb_host %>",
     port: 8086,
-    database: "dbname",
-    username: "user",
-    password: "pass",
+    database: "<%= @influxdb_database %>",
+    username: "<%= @influxdb_username %>",
+    password: "<%= @influxdb_password %>",
     flush: {
       enable: true
     },

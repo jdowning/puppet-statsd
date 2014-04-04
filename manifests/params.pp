@@ -1,27 +1,31 @@
 # == Class statsd::params
 class statsd::params {
-  $ensure           = 'present'
-  $port             = '8125'
+  $ensure            = 'present'
+  $node_module_dir   = '/usr/lib/node_modules'
 
-  $graphiteHost    = 'localhost'
-  $graphitePort    = '2003'
+  $port              = '8125'
 
-  $backends         = [ './backends/graphite' ]
-  $debug            = false
-  $address          = '0.0.0.0'
-  $mgmt_address     = '0.0.0.0'
-  $mgmt_port        = '8126'
-  $statsd_title     = 'statsd'
-  $healthStatus     = 'up'
-  $dumpMessages     = false
-  $flushInterval    = '10000'
-  $percentThreshold = ['90']
-  $flush_counts     = true
+  $graphiteHost      = 'localhost'
+  $graphitePort      = '2003'
 
-  $influxdb_host    = ''
-  $config           = { }
+  $backends          = [ './backends/graphite' ]
+  $debug             = false
+  $address           = '0.0.0.0'
+  $mgmt_address      = '0.0.0.0'
+  $mgmt_port         = '8126'
+  $statsd_title      = 'statsd'
+  $healthStatus      = 'up'
+  $dumpMessages      = false
+  $flushInterval     = '10000'
+  $percentThreshold  = ['90']
+  $flush_counts      = true
 
-  $node_module_dir  = ''
+  $influxdb_host     = ''
+  $influxdb_database = ''
+  $influxdb_username = ''
+  $influxdb_password = ''
+
+  $config            = { }
 
   case $::osfamily {
     'RedHat', 'Amazon': {
