@@ -9,7 +9,7 @@
   "project_page": "https://github.com/justindowning/puppet-statsd",
   "dependencies": [
     {
-      "name": "puppetlabs/nodejes",
+      "name": "puppetlabs/nodejs",
       "version_requirement": ">= 0.2.0"
     }
   ],
