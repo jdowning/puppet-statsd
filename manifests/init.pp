@@ -18,6 +18,7 @@ class statsd (
   $flush_counts      = $statsd::params::flush_counts,
 
   $influxdb_host     = $statsd::params::influxdb_host,
+  $influxdb_port     = $statsd::params::influxdb_port,
   $influxdb_database = $statsd::params::influxdb_database,
   $influxdb_username = $statsd::params::influxdb_username,
   $influxdb_password = $statsd::params::influxdb_password,

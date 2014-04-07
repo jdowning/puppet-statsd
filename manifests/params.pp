@@ -21,9 +21,10 @@ class statsd::params {
   $flush_counts      = true
 
   $influxdb_host     = ''
+  $influxdb_port     = '8086'
   $influxdb_database = ''
-  $influxdb_username = ''
-  $influxdb_password = ''
+  $influxdb_username = 'root'
+  $influxdb_password = 'root'
 
   $config            = { }
 
