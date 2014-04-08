@@ -19,7 +19,7 @@ class statsd::config {
   }->
   file { $configfile:
     content => template('statsd/localConfig.js.erb'),
-    mode    => '0444',
+    mode    => '0644',
   }
 
   file { '/etc/init.d/statsd':
@@ -34,7 +34,8 @@ class statsd::config {
 
   file { '/var/log/statsd':
     ensure => directory,
-    mode   => '0770',
+    owner  => 'nobody',
+    mode   => '0755',
   }
 
   file { '/usr/local/sbin/statsd':
