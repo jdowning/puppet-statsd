@@ -10,6 +10,7 @@ class statsd::config {
       command => '/usr/bin/npm install --save statsd-influxdb-backend',
       cwd     => "${statsd::node_module_dir}/statsd",
       unless  => "/usr/bin/test -d ${statsd::node_module_dir}/statsd/node_modules/statsd-influxdb-backend",
+      require => Package['statsd'],
     }
   }
 
