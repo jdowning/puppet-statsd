@@ -4,16 +4,6 @@ class statsd::config {
   $logfile     = '/var/log/statsd/statsd.log'
   $statsjs = "${statsd::node_module_dir}/statsd/stats.js"
 
-  # If we have an InfluxDB host, let's install the proper backend
-  if $statsd::influxdb_host {
-    exec { 'install-statsd-influxdb-backend':
-      command => '/usr/bin/npm install --save statsd-influxdb-backend',
-      cwd     => "${statsd::node_module_dir}/statsd",
-      unless  => "/usr/bin/test -d ${statsd::node_module_dir}/statsd/node_modules/statsd-influxdb-backend",
-      require => Package['statsd'],
-    }
-  }
-
   file { '/etc/statsd':
     ensure => directory,
     mode   => '0755',

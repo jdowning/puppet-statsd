@@ -25,15 +25,28 @@
     username: "<%= @influxdb_username %>",
     password: "<%= @influxdb_password %>",
     flush: {
-      enable: true
+      enable: <%= @influxdb_flush %>
     },
     proxy: {
-      enable: false,
-      suffix: "raw",
-      flushInterval: "<%= @flushInterval %>"
+      enable: <%= @influxdb_proxy %>,
+      suffix: "<%= @influxdb_proxy_suffix %>",
+      flushInterval: "<%= @influxdb_proxy_flushInterval %>"
     }
   }
 <% end -%>
+
+<% if @librato_email && @librato_token -%>
+, librato: {
+    email: "<%= @librato_email %>",
+    token: "<%= @librato_token %>",
+    snapTime: "<%= @librato_snapTime %>",
+    countersAsGauges: "<%= @librato_countersAsGauges %>",
+    skipInternalMetrics: "<%= @librato_skipInternalMetrics %>",
+    retryDelaySecs: "<%= @librato_retryDelaySecs %>",
+    postTimeoutSecs: "<%= @librato_postTimeoutSecs %>"
+  }
+<% end -%>
+
 <% @config.each do |k, v| -%>
 , <%= k %>: <%= v %>
 <% end -%>

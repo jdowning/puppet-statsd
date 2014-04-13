@@ -1,34 +1,49 @@
 # == Class statsd
 class statsd (
-  $ensure            = $statsd::params::ensure,
-  $port              = $statsd::params::port,
-  $graphiteHost      = $statsd::params::graphiteHost,
-  $graphiteport      = $statsd::params::graphitePort,
+  $ensure                       = $statsd::params::ensure,
+  $node_module_dir              = $statsd::params::node_module_dir,
 
-  $backends          = $statsd::params::backends,
-  $debug             = $statsd::params::debug,
-  $address           = $statsd::params::address,
-  $mgmt_address      = $statsd::params::mgmt_address,
-  $mgmt_port         = $statsd::params::mgmt_port,
-  $statsd_title      = $statsd::params::statsd_title,
-  $healthStatus      = $statsd::params::healthStatus,
-  $dumpMessages      = $statsd::params::dumpMessages,
-  $flushInterval     = $statsd::params::flushInterval,
-  $percentThreshold  = $statsd::params::percentThreshold,
-  $flush_counts      = $statsd::params::flush_counts,
+  $port                         = $statsd::params::port,
+  $address                      = $statsd::params::address,
 
-  $influxdb_host     = $statsd::params::influxdb_host,
-  $influxdb_port     = $statsd::params::influxdb_port,
-  $influxdb_database = $statsd::params::influxdb_database,
-  $influxdb_username = $statsd::params::influxdb_username,
-  $influxdb_password = $statsd::params::influxdb_password,
+  $graphiteHost                 = $statsd::params::graphiteHost,
+  $graphiteport                 = $statsd::params::graphitePort,
 
-  $config            = $statsd::params::config,
+  $backends                     = $statsd::params::backends,
+  $debug                        = $statsd::params::debug,
+  $mgmt_address                 = $statsd::params::mgmt_address,
+  $mgmt_port                    = $statsd::params::mgmt_port,
+  $statsd_title                 = $statsd::params::statsd_title,
+  $healthStatus                 = $statsd::params::healthStatus,
+  $dumpMessages                 = $statsd::params::dumpMessages,
+  $flushInterval                = $statsd::params::flushInterval,
+  $percentThreshold             = $statsd::params::percentThreshold,
+  $flush_counts                 = $statsd::params::flush_counts,
 
-  $node_module_dir   = $statsd::params::node_module_dir,
-  $init_script       = $statsd::params::init_script,
+  $influxdb_host                = $statsd::params::influxdb_host,
+  $influxdb_port                = $statsd::params::influxdb_port,
+  $influxdb_database            = $statsd::params::influxdb_database,
+  $influxdb_username            = $statsd::params::influxdb_username,
+  $influxdb_password            = $statsd::params::influxdb_password,
+  $influxdb_flush               = $statsd::params::influxdb_flush,
+  $influxdb_proxy               = $statsd::params::influxdb_proxy,
+  $influxdb_proxy_suffix        = $statsd::params::influxdb_proxy_suffix,
+  $influxdb_proxy_flushInterval = $statsd::params::influxdb_proxy_flushInterval,
+
+  $librato_email                = $statsd::params::librato_email,
+  $librato_token                = $statsd::params::librato_token,
+  $librato_snapTime             = $statsd::params::librato_snapTime,
+  $librato_countersAsGauges     = $statsd::params::librato_countersAsGauges,
+  $librato_skipInternalMetrics  = $statsd::params::librato_skipInternalMetrics,
+  $librato_retryDelaySecs       = $statsd::params::librato_retryDelaySecs,
+  $librato_postTimeoutSecs      = $statsd::params::librato_postTimeoutSecs,
+
+  $config                       = $statsd::params::config,
+
+  $init_script                  = $statsd::params::init_script,
 ) inherits statsd::params {
 
+  class { 'statsd::backends': }
   class { 'statsd::config': }
 
   package { 'statsd':
