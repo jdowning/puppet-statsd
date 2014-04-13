@@ -7,7 +7,7 @@ class statsd (
   $address                      = $statsd::params::address,
 
   $graphiteHost                 = $statsd::params::graphiteHost,
-  $graphiteport                 = $statsd::params::graphitePort,
+  $graphitePort                 = $statsd::params::graphitePort,
 
   $backends                     = $statsd::params::backends,
   $debug                        = $statsd::params::debug,

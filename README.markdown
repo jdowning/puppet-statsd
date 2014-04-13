@@ -13,13 +13,10 @@ This Puppet module will install [statsd](https://github.com/etsy/statsd/) on Deb
 ## Usage
 ```puppet
     class { 'statsd':
-      graphite_host    => 'my.graphite.host',
-      influxdb_host    => 'my.influxdb.host',
-      flushinterval    => 1000, # flush every second
-      percentthreshold => [75, 90, 99],
       address          => '10.20.1.2',
-      listenport       => 2158,
-      provider         => npm,
+      graphiteHost     => 'my.graphite.host',
+      flushInterval    => 1000,
+      percentThreshold => [75, 90, 99],
     }
 ```
 
