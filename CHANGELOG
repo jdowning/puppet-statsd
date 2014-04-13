@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.1.0
+-----
+
+* Add support for InfluxDB and Librato backends
+* Add additional parameters to tune statsd configuration
+* Add Vagrantfile support
+
 1.0.2
 -----
 
