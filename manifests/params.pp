@@ -20,7 +20,7 @@ class statsd::params {
   $percentThreshold             = ['90']
   $flush_counts                 = true
 
-  $influxdb_host                = ''
+  $influxdb_host                = undef
   $influxdb_port                = '8086'
   $influxdb_database            = 'statsd'
   $influxdb_username            = 'root'
@@ -30,8 +30,8 @@ class statsd::params {
   $influxdb_proxy_suffix        = 'raw'
   $influxdb_proxy_flushInterval = '10000'
 
-  $librato_email                = ''
-  $librato_token                = ''
+  $librato_email                = undef
+  $librato_token                = undef
   $librato_snapTime             = '10000'
   $librato_countersAsGauges     = true
   $librato_skipInternalMetrics  = true

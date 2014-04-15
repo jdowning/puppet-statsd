@@ -16,8 +16,8 @@
 , flushinterval: "<%= @flushInterval %>"
 , percentThreshold: [<%= @percentThreshold.join(', ') %>]
 , flush_counts: <%= @flush_counts %>
-
 <% if @influxdb_host -%>
+
 , influxdb: {
     host: "<%= @influxdb_host %>",
     port: <%= @influxdb_port %>,
@@ -34,8 +34,8 @@
     }
   }
 <% end -%>
-
 <% if @librato_email && @librato_token -%>
+
 , librato: {
     email: "<%= @librato_email %>",
     token: "<%= @librato_token %>",
@@ -46,7 +46,6 @@
     postTimeoutSecs: "<%= @librato_postTimeoutSecs %>"
   }
 <% end -%>
-
 <% @config.each do |k, v| -%>
 , <%= k %>: <%= v %>
 <% end -%>
