@@ -1,9 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-#fail "You must set PUPPET_HOME to proceed" if ENV['PUPPET_HOME'] == nil
-PUPPET_HOME= ENV['PUPPET_HOME']
-
 Vagrant.configure("2") do |config|
   config.vm.hostname = 'puppet-statsd'
   config.vm.synced_folder "modules", "/tmp/puppet-modules", type: "rsync", rsync__exclude: ".git/"
