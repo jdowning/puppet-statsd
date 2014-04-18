@@ -42,10 +42,16 @@ class statsd::params {
 
   case $::osfamily {
     'RedHat', 'Amazon': {
-      $init_script = 'puppet:///modules/statsd/statsd-init-rhel'
+      $init_location = '/etc/init.d/statsd'
+      $init_mode     = '0755'
+      $init_provider = 'redhat'
+      $init_script   = 'puppet:///modules/statsd/statsd-init-rhel'
     }
     'Debian': {
-      $init_script = 'puppet:///modules/statsd/statsd-init'
+      $init_location = '/etc/init/statsd.conf'
+      $init_mode     = '0644'
+      $init_provider = 'upstart'
+      $init_script   = 'puppet:///modules/statsd/statsd-upstart'
     }
     default: {
       fail('Unsupported OS Family')

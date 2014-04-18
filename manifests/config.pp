@@ -13,9 +13,9 @@ class statsd::config {
     mode    => '0644',
   }
 
-  file { '/etc/init.d/statsd':
+  file { $statsd::init_location:
     source  => $statsd::init_script,
-    mode    => '0755',
+    mode    => $statsd::init_mode,
   }
 
   file {  '/etc/default/statsd':
