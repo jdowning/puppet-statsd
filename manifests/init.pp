@@ -20,6 +20,14 @@ class statsd (
   $percentThreshold             = $statsd::params::percentThreshold,
   $flush_counts                 = $statsd::params::flush_counts,
 
+  $graphite_legacyNamespace     = $statsd::params::graphite_legacyNamespace,
+  $graphite_globalPrefix        = $statsd::params::graphite_globalPrefix,
+  $graphite_prefixCounter       = $statsd::params::graphite_prefixCounter,
+  $graphite_prefixTimer         = $statsd::params::graphite_prefixTimer,
+  $graphite_prefixGauge         = $statsd::params::graphite_prefixGauge,
+  $graphite_prefixSet           = $statsd::params::graphite_prefixSet,
+  $graphite_globalSuffix        = $statsd::params::graphite_globalSuffix,
+
   $influxdb_host                = $statsd::params::influxdb_host,
   $influxdb_port                = $statsd::params::influxdb_port,
   $influxdb_database            = $statsd::params::influxdb_database,
