@@ -4,8 +4,10 @@
 , backends: [<% @backends.each do |backend| -%>
   "<%= backend %>",
   <% end -%>]
+<% if @backends.grep(/.*graphite$/).any? -%>
 , graphitePort: "<%= @graphitePort %>"
 , graphiteHost: "<%= @graphiteHost %>"
+<% end -%>
 
 , debug: <%= @debug %>
 , mgmt_address: "<%= @mgmt_address %>"
@@ -44,6 +46,18 @@
     skipInternalMetrics: "<%= @librato_skipInternalMetrics %>",
     retryDelaySecs: "<%= @librato_retryDelaySecs %>",
     postTimeoutSecs: "<%= @librato_postTimeoutSecs %>"
+  }
+<% end -%>
+<% if @stackdriver_apiKey -%>
+
+, stackdriver: {
+    apiKey: "<%= @stackdriver_apiKey %>",
+<% if @stackdriver_source -%>
+    source: "<%= @stackdriver_source %>",
+<% end -%>
+<% if @stackdriver_debug -%>
+    debug: "true"
+<% end -%>
   }
 <% end -%>
 <% @config.each do |k, v| -%>

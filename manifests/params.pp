@@ -38,7 +38,13 @@ class statsd::params {
   $librato_retryDelaySecs       = '5'
   $librato_postTimeoutSecs      = '4'
 
+  $stackdriver_apiKey           = undef
+  $stackdriver_source           = undef
+  $stackdriver_debug            = false
+
   $config                       = { }
+
+  $dependencies                 = undef
 
   case $::osfamily {
     'RedHat', 'Amazon': {

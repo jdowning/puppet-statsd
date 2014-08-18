@@ -19,4 +19,15 @@ class statsd::backends {
       require => Package['statsd'],
     }
   }
+
+  # If we have a stackdriver API key, install the proper backend
+  if $statsd::stackdriver_apiKey {
+    exec { 'install-statsd-stackdriver-backend':
+      command => '/usr/bin/npm install --save stackdriver-statsd-backend',
+      cwd     => "${statsd::node_module_dir}/statsd",
+      unless  => "/usr/bin/test -d ${statsd::node_module_dir}/statsd/node_modules/stackdriver-statsd-backend",
+      require => Package['statsd'],
+    }
+  }
+
 }

@@ -38,13 +38,23 @@ class statsd (
   $librato_retryDelaySecs       = $statsd::params::librato_retryDelaySecs,
   $librato_postTimeoutSecs      = $statsd::params::librato_postTimeoutSecs,
 
+  $stackdriver_apiKey           = $statsd::params::stackdriver_apiKey,
+  $stackdriver_source           = $statsd::params::stackdriver_source,
+  $stackdriver_debug            = $statsd::params::stackdriver_debug,
+
   $config                       = $statsd::params::config,
 
   $init_location                = $statsd::params::init_location,
   $init_mode                    = $statsd::params::init_mode,
   $init_provider                = $statsd::params::init_provider,
   $init_script                  = $statsd::params::init_script,
+
+  $dependencies                 = $statsd::params::dependencies,
 ) inherits statsd::params {
+
+  if $dependencies {
+    $dependencies -> Class['statsd']
+  }
 
   class { 'statsd::backends': }
   class { 'statsd::config': }
