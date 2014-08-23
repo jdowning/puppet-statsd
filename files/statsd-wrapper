@@ -10,7 +10,7 @@ CONFIGFILE=$2
 LOGFILE=$3
 
 
-NODE=$(which nodejs || which node)
+NODE=$(which nodejs 2>/dev/null|| which node 2>/dev/null)
 
 if ! [ -x "$NODE" ]; then
   echo "Unable to run node  '${NODE}' cannot be executed" >&2
