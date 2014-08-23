@@ -16,6 +16,16 @@
 , flushinterval: "<%= @flushInterval %>"
 , percentThreshold: [<%= @percentThreshold.join(', ') %>]
 , flush_counts: <%= @flush_counts %>
+
+, graphite: {
+    legacyNamespace:  <%= @graphite_legacyNamespace %>,
+    globalPrefix:     "<%= @graphite_globalPrefix %>",
+    prefixCounter:    "<%= @graphite_prefixCounter %>",
+    prefixTimer:      "<%= @graphite_prefixTimer %>",
+    prefixGauge:      "<%= @graphite_prefixGauge %>",
+    prefixSet:        "<%= @graphite_prefixSet %>",
+    globalSuffix:     "<%= @graphite_globalSuffix %>"
+  }
 <% if @influxdb_host -%>
 
 , influxdb: {
@@ -46,6 +56,7 @@
     postTimeoutSecs: "<%= @librato_postTimeoutSecs %>"
   }
 <% end -%>
+
 <% @config.each do |k, v| -%>
 , <%= k %>: <%= v %>
 <% end -%>

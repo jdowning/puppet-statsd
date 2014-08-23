@@ -20,6 +20,14 @@ class statsd::params {
   $percentThreshold             = ['90']
   $flush_counts                 = true
 
+  $graphite_legacyNamespace     = true
+  $graphite_globalPrefix        = 'stats'
+  $graphite_prefixCounter       = 'counters'
+  $graphite_prefixTimer         = 'timers'
+  $graphite_prefixGauge         = 'gauges'
+  $graphite_prefixSet           = 'sets'
+  $graphite_globalSuffix        = ''
+
   $influxdb_host                = undef
   $influxdb_port                = '8086'
   $influxdb_database            = 'statsd'
