@@ -4,8 +4,6 @@
 , backends: [<% @backends.each do |backend| -%>
   "<%= backend %>",
   <% end -%>]
-, graphitePort: "<%= @graphitePort %>"
-, graphiteHost: "<%= @graphiteHost %>"
 
 , debug: <%= @debug %>
 , mgmt_address: "<%= @mgmt_address %>"
@@ -17,6 +15,9 @@
 , percentThreshold: [<%= @percentThreshold.join(', ') %>]
 , flush_counts: <%= @flush_counts %>
 
+<% if @backends.grep(/graphite/).any? -%>
+, graphitePort: "<%= @graphitePort %>"
+, graphiteHost: "<%= @graphiteHost %>"
 , graphite: {
     legacyNamespace:  <%= @graphite_legacyNamespace %>,
     globalPrefix:     "<%= @graphite_globalPrefix %>",
@@ -26,8 +27,9 @@
     prefixSet:        "<%= @graphite_prefixSet %>",
     globalSuffix:     "<%= @graphite_globalSuffix %>"
   }
-<% if @influxdb_host -%>
+<% end -%>
 
+<% if @backends.grep(/influxdb/).any? -%>
 , influxdb: {
     host: "<%= @influxdb_host %>",
     port: <%= @influxdb_port %>,
@@ -44,8 +46,8 @@
     }
   }
 <% end -%>
-<% if @librato_email && @librato_token -%>
 
+<% if @backends.grep(/librato/).any? -%>
 , librato: {
     email: "<%= @librato_email %>",
     token: "<%= @librato_token %>",
@@ -54,6 +56,17 @@
     skipInternalMetrics: "<%= @librato_skipInternalMetrics %>",
     retryDelaySecs: "<%= @librato_retryDelaySecs %>",
     postTimeoutSecs: "<%= @librato_postTimeoutSecs %>"
+  }
+<% end -%>
+
+<% if @backends.grep(/stackdriver/).any? -%>
+, stackdriver: {
+    apiKey: "<%= @stackdriver_apiKey %>",
+    source: "<%= @stackdriver_source %>",
+    sourceFromPrefix: "<%= @stackdriver_sourceFromPrefix %>",
+    sourcePrefixSeparator: "<%= @stackdriver_sourcePrefixSeparator %>",
+    sendTimerPercentiles: "<%= @stackdriver_sendTimerPercentiles %>",
+    debug: "<%= @stackdriver_debug %>"
   }
 <% end -%>
 
