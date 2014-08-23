@@ -2,5 +2,6 @@
 fixtures:
   repositories:
     nodejs: https://github.com/puppetlabs/puppetlabs-nodejs
+    stdlib: https://github.com/puppetlabs/puppetlabs-stdlib
   symlinks:
     statsd: "#{source_dir}"
