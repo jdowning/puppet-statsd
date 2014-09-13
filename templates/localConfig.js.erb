@@ -24,10 +24,12 @@
     prefixCounter:    "<%= @graphite_prefixCounter %>",
     prefixTimer:      "<%= @graphite_prefixTimer %>",
     prefixGauge:      "<%= @graphite_prefixGauge %>",
+  <%- if defined? @graphite_globalSuffix -%>
     prefixSet:        "<%= @graphite_prefixSet %>",
-  <% if defined? @graphite_globalSuffix and @graphite_globalSuffix != "" -%>
     globalSuffix:     "<%= @graphite_globalSuffix %>"
-  <% end -%>
+  <%- else -%>
+    prefixSet:        "<%= @graphite_prefixSet %>"
+  <%- end -%>
   }
 <% end -%>
 
