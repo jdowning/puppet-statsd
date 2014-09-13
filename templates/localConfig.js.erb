@@ -25,7 +25,9 @@
     prefixTimer:      "<%= @graphite_prefixTimer %>",
     prefixGauge:      "<%= @graphite_prefixGauge %>",
     prefixSet:        "<%= @graphite_prefixSet %>",
+  <% if defined? @graphite_globalSuffix and @graphite_globalSuffix != "" -%>
     globalSuffix:     "<%= @graphite_globalSuffix %>"
+  <% end -%>
   }
 <% end -%>
 
