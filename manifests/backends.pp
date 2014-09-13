@@ -1,6 +1,6 @@
-# ==Class: statsd::backends
+# == Class: statsd::backends
 class statsd::backends {
-  $backends = join($statsd::backends, ",")
+  $backends = join($statsd::backends, ',')
 
   # Make sure $statsd::influxdb_host is set
   if $backends =~ /influxdb/ {

@@ -14,8 +14,8 @@ class statsd::config {
   }
 
   file { $statsd::init_location:
-    source  => $statsd::init_script,
-    mode    => $statsd::init_mode,
+    source => $statsd::init_script,
+    mode   => $statsd::init_mode,
   }
 
   file {  '/etc/default/statsd':
@@ -30,8 +30,8 @@ class statsd::config {
   }
 
   file { '/usr/local/sbin/statsd':
-    source  => 'puppet:///modules/statsd/statsd-wrapper',
-    mode    => '0755',
+    source => 'puppet:///modules/statsd/statsd-wrapper',
+    mode   => '0755',
   }
 
   File {

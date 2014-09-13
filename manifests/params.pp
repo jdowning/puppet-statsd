@@ -1,4 +1,4 @@
-# == Class statsd::params
+# == Class: statsd::params
 class statsd::params {
   $ensure                            = 'present'
   $node_module_dir                   = '/usr/lib/node_modules'
