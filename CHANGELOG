@@ -1,6 +1,17 @@
 CHANGELOG
 =========
 
+2.0.0
+-----
+
+Lots of changes to the API (parameters) plus additional support for multiple backends.
+
+* add support for Stackdriver backend
+* clean up manifests/backends.pp to properly check and install backend(s) when declared
+* configure Graphite backend only if declared
+* update Vagrantfile, tests/vagrant.pp
+* update test matrix, dependencies, documentation
+
 1.1.0
 -----
 
