@@ -8,4 +8,3 @@ gem 'puppet', puppetversion
 gem 'puppet-blacksmith'
 gem 'puppet-lint'
 gem 'puppetlabs_spec_helper'
-#gem 'librarian-puppet-maestrodev', '>=0.9.7.4'

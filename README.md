@@ -13,7 +13,7 @@ This Puppet module will install [statsd](https://github.com/etsy/statsd/) on Deb
 ## Usage
 ```puppet
     class { 'statsd':
-      address          => '10.20.1.2',
+      backends         => [ './backends/graphite'],
       graphiteHost     => 'my.graphite.host',
       flushInterval    => 1000,
       percentThreshold => [75, 90, 99],
@@ -22,7 +22,13 @@ This Puppet module will install [statsd](https://github.com/etsy/statsd/) on Deb
 
 ## Backends
 
-You can install multiple backends. Supported backends include `graphite`, `influxdb`, `librato`, and `stackdriver`. More information about the installation of each backend available in [manifests/backends.pp](https://github.com/justindowning/puppet-statsd/blob/master/manifests/backends.pp).
+You can install multiple backends. Supported backends include:  
+* graphite  
+* influxdb  
+* librato  
+* stackdriver  
+
+More information about the installation of each backend available in [manifests/backends.pp](https://github.com/justindowning/puppet-statsd/blob/master/manifests/backends.pp).
 
 ### Graphite
 
