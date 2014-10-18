@@ -10,6 +10,10 @@ This Puppet module will install [statsd](https://github.com/etsy/statsd/) on Deb
 
 `puppet module install --modulepath /path/to/puppet/modules jdowning-statsd`
 
+## Requirements
+
+This module assumes nodejs & npm is installed on the host, but will not do it for you. I recommend using [puppetlabs/nodejs](https://github.com/puppetlabs/puppetlabs-nodejs) to set this up.
+
 ## Usage
 ```puppet
     class { 'statsd':
