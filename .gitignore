@@ -3,6 +3,6 @@
 .librarian/*
 .tmp/*
 .vagrant/*
-modules/*
+modules/**
 pkg/*
 spec/fixtures/*
