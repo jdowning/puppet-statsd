@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+2.0.1
+-----
+
+* Fix bug with correct capitalization of flushInterval
+* Update Rakefile :lint options
+* Update README to reflect nodejs requirement
+* Update Gemfile.lock
+
 2.0.0
 -----
 
