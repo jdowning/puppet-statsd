@@ -1,80 +1,80 @@
 {
-  port: "<%= @port %>"
-, address: "<%= @address %>"
-, backends: [<% @backends.each do |backend| -%>
+  port: "<%= scope.lookupvar('statsd::port') %>"
+, address: "<%= scope.lookupvar('statsd::address') %>"
+, backends: [<% scope.lookupvar('statsd::backends').each do |backend| -%>
   "<%= backend %>",
   <% end -%>]
 
-, debug: <%= @debug %>
-, mgmt_address: "<%= @mgmt_address %>"
-, mgmt_port: "<%= @mgmt_port %>"
-, title: "<%= @statsd_title %>"
-, healthStatus: "<%= @healthStatus %>"
-, dumpMessages: <%= @dumpMessages %>
-, flushInterval: "<%= @flushInterval %>"
-, percentThreshold: [<%= @percentThreshold.join(', ') %>]
-, flush_counts: <%= @flush_counts %>
+, debug: <%= scope.lookupvar('statsd::debug') %>
+, mgmt_address: "<%= scope.lookupvar('statsd::mgmt_address') %>"
+, mgmt_port: "<%= scope.lookupvar('statsd::mgmt_port') %>"
+, title: "<%= scope.lookupvar('statsd::statsd_title') %>"
+, healthStatus: "<%= scope.lookupvar('statsd::healthStatus') %>"
+, dumpMessages: <%= scope.lookupvar('statsd::dumpMessages') %>
+, flushInterval: "<%= scope.lookupvar('statsd::flushInterval') %>"
+, percentThreshold: [<%= scope.lookupvar('statsd::percentThreshold').join(', ') %>]
+, flush_counts: <%= scope.lookupvar('statsd::flush_counts') %>
 
-<% if @backends.grep(/graphite/).any? -%>
-, graphitePort: "<%= @graphitePort %>"
-, graphiteHost: "<%= @graphiteHost %>"
+<% if scope.lookupvar('statsd::backends').grep(/graphite/).any? -%>
+, graphitePort: "<%= scope.lookupvar('statsd::graphitePort') %>"
+, graphiteHost: "<%= scope.lookupvar('statsd::graphiteHost') %>"
 , graphite: {
-    legacyNamespace:  <%= @graphite_legacyNamespace %>,
-    globalPrefix:     "<%= @graphite_globalPrefix %>",
-    prefixCounter:    "<%= @graphite_prefixCounter %>",
-    prefixTimer:      "<%= @graphite_prefixTimer %>",
-    prefixGauge:      "<%= @graphite_prefixGauge %>",
-  <%- if defined? @graphite_globalSuffix -%>
-    prefixSet:        "<%= @graphite_prefixSet %>",
-    globalSuffix:     "<%= @graphite_globalSuffix %>"
+    legacyNamespace:  <%= scope.lookupvar('statsd::graphite_legacyNamespace') %>,
+    globalPrefix:     "<%= scope.lookupvar('statsd::graphite_globalPrefix') %>",
+    prefixCounter:    "<%= scope.lookupvar('statsd::graphite_prefixCounter') %>",
+    prefixTimer:      "<%= scope.lookupvar('statsd::graphite_prefixTimer') %>",
+    prefixGauge:      "<%= scope.lookupvar('statsd::graphite_prefixGauge') %>",
+  <%- if defined? scope.lookupvar('statsd::graphite_globalSuffix') -%>
+    prefixSet:        "<%= scope.lookupvar('statsd::graphite_prefixSet') %>",
+    globalSuffix:     "<%= scope.lookupvar('statsd::graphite_globalSuffix') %>"
   <%- else -%>
-    prefixSet:        "<%= @graphite_prefixSet %>"
+    prefixSet:        "<%= scope.lookupvar('statsd::graphite_prefixSet') %>"
   <%- end -%>
   }
 <% end -%>
 
-<% if @backends.grep(/influxdb/).any? -%>
+<% if scope.lookupvar('statsd::backends').grep(/influxdb/).any? -%>
 , influxdb: {
-    host: "<%= @influxdb_host %>",
-    port: <%= @influxdb_port %>,
-    database: "<%= @influxdb_database %>",
-    username: "<%= @influxdb_username %>",
-    password: "<%= @influxdb_password %>",
+    host: "<%= scope.lookupvar('statsd::influxdb_host') %>",
+    port: <%= scope.lookupvar('statsd::influxdb_port') %>,
+    database: "<%= scope.lookupvar('statsd::influxdb_database') %>",
+    username: "<%= scope.lookupvar('statsd::influxdb_username') %>",
+    password: "<%= scope.lookupvar('statsd::influxdb_password') %>",
     flush: {
-      enable: <%= @influxdb_flush %>
+      enable: <%= scope.lookupvar('statsd::influxdb_flush') %>
     },
     proxy: {
-      enable: <%= @influxdb_proxy %>,
-      suffix: "<%= @influxdb_proxy_suffix %>",
-      flushInterval: "<%= @influxdb_proxy_flushInterval %>"
+      enable: <%= scope.lookupvar('statsd::influxdb_proxy') %>,
+      suffix: "<%= scope.lookupvar('statsd::influxdb_proxy_suffix') %>",
+      flushInterval: "<%= scope.lookupvar('statsd::influxdb_proxy_flushInterval') %>"
     }
   }
 <% end -%>
 
-<% if @backends.grep(/librato/).any? -%>
+<% if scope.lookupvar('statsd::backends').grep(/librato/).any? -%>
 , librato: {
-    email: "<%= @librato_email %>",
-    token: "<%= @librato_token %>",
-    snapTime: "<%= @librato_snapTime %>",
-    countersAsGauges: "<%= @librato_countersAsGauges %>",
-    skipInternalMetrics: "<%= @librato_skipInternalMetrics %>",
-    retryDelaySecs: "<%= @librato_retryDelaySecs %>",
-    postTimeoutSecs: "<%= @librato_postTimeoutSecs %>"
+    email: "<%= scope.lookupvar('statsd::librato_email') %>",
+    token: "<%= scope.lookupvar('statsd::librato_token') %>",
+    snapTime: "<%= scope.lookupvar('statsd::librato_snapTime') %>",
+    countersAsGauges: "<%= scope.lookupvar('statsd::librato_countersAsGauges') %>",
+    skipInternalMetrics: "<%= scope.lookupvar('statsd::librato_skipInternalMetrics') %>",
+    retryDelaySecs: "<%= scope.lookupvar('statsd::librato_retryDelaySecs') %>",
+    postTimeoutSecs: "<%= scope.lookupvar('statsd::librato_postTimeoutSecs') %>"
   }
 <% end -%>
 
-<% if @backends.grep(/stackdriver/).any? -%>
+<% if scope.lookupvar('statsd::backends').grep(/stackdriver/).any? -%>
 , stackdriver: {
-    apiKey: "<%= @stackdriver_apiKey %>",
-    source: "<%= @stackdriver_source %>",
-    sourceFromPrefix: "<%= @stackdriver_sourceFromPrefix %>",
-    sourcePrefixSeparator: "<%= @stackdriver_sourcePrefixSeparator %>",
-    sendTimerPercentiles: "<%= @stackdriver_sendTimerPercentiles %>",
-    debug: "<%= @stackdriver_debug %>"
+    apiKey: "<%= scope.lookupvar('statsd::stackdriver_apiKey') %>",
+    source: "<%= scope.lookupvar('statsd::stackdriver_source') %>",
+    sourceFromPrefix: "<%= scope.lookupvar('statsd::stackdriver_sourceFromPrefix') %>",
+    sourcePrefixSeparator: "<%= scope.lookupvar('statsd::stackdriver_sourcePrefixSeparator') %>",
+    sendTimerPercentiles: "<%= scope.lookupvar('statsd::stackdriver_sendTimerPercentiles') %>",
+    debug: "<%= scope.lookupvar('statsd::stackdriver_debug') %>"
   }
 <% end -%>
 
-<% @config.each do |k, v| -%>
+<% scope.lookupvar('statsd::config').each do |k, v| -%>
 , <%= k %>: <%= v %>
 <% end -%>
 }
