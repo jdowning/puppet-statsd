@@ -78,7 +78,7 @@ class statsd (
     ensure    => running,
     enable    => true,
     hasstatus => true,
-    provider  => $statsd::params::init_provider,
+    provider  => $init_provider,
     require   => [ Package['statsd'], File['/var/log/statsd'] ],
   }
 }
