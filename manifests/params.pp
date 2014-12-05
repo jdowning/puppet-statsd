@@ -2,6 +2,7 @@
 class statsd::params {
   $ensure                            = 'present'
   $node_module_dir                   = '/usr/lib/node_modules'
+  $nodejs_bin                        = '/usr/bin/node'
 
   $port                              = '8125'
   $address                           = '0.0.0.0'

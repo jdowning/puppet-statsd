@@ -1,8 +1,10 @@
 # == Class: statsd::config
-class statsd::config {
-  $configfile  = '/etc/statsd/localConfig.js'
-  $logfile     = '/var/log/statsd/statsd.log'
-  $statsjs = "${statsd::node_module_dir}/statsd/stats.js"
+class statsd::config (
+  $configfile  = '/etc/statsd/localConfig.js',
+  $logfile     = '/var/log/statsd/statsd.log',
+  $statsjs     = "${statsd::node_module_dir}/statsd/stats.js",
+  $nodejs_bin  = $statsd::nodejs_bin
+) {
 
   file { '/etc/statsd':
     ensure => directory,

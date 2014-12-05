@@ -2,6 +2,7 @@
 class statsd (
   $ensure                            = $statsd::params::ensure,
   $node_module_dir                   = $statsd::params::node_module_dir,
+  $nodejs_bin                        = $statsd::params::nodejs_bin,
 
   $port                              = $statsd::params::port,
   $address                           = $statsd::params::address,
