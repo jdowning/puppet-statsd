@@ -6,6 +6,7 @@ class statsd (
 
   $port                              = $statsd::params::port,
   $address                           = $statsd::params::address,
+  $configfile                        = $statsd::params::configfile,
 
   $backends                          = $statsd::params::backends,
   $debug                             = $statsd::params::debug,
@@ -60,6 +61,9 @@ class statsd (
   $init_provider                     = $statsd::params::init_provider,
   $init_script                       = $statsd::params::init_script,
 
+  $package_name                      = $statsd::params::package_name,
+  $package_provider                  = $statsd::params::package_provider,
+
   $dependencies                      = $statsd::params::dependencies,
 ) inherits statsd::params {
 
@@ -71,8 +75,9 @@ class statsd (
   class { 'statsd::config': }
 
   package { 'statsd':
+    name     => $package_name,
     ensure   => $ensure,
-    provider => 'npm',
+    provider => $package_provider,
   }
 
   service { 'statsd':

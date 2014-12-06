@@ -6,6 +6,7 @@ class statsd::params {
 
   $port                              = '8125'
   $address                           = '0.0.0.0'
+  $configfile                        = '/etc/statsd/localConfig.js'
 
   $backends                          = [ './backends/graphite' ]
   $debug                             = false
@@ -56,6 +57,9 @@ class statsd::params {
   $config                            = { }
 
   $dependencies                      = undef
+
+  $package_name                      = 'statsd'
+  $package_provider                  = 'npm'
 
   case $::osfamily {
     'RedHat', 'Amazon': {
