@@ -1,6 +1,6 @@
 # == Class: statsd::config
 class statsd::config (
-  $configfile  = '/etc/statsd/localConfig.js',
+  $configfile  = $statsd::configfile,
   $logfile     = '/var/log/statsd/statsd.log',
   $statsjs     = "${statsd::node_module_dir}/statsd/stats.js",
   $nodejs_bin  = $statsd::nodejs_bin
