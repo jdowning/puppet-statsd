@@ -75,8 +75,8 @@ class statsd (
   class { 'statsd::config': }
 
   package { 'statsd':
-    name     => $package_name,
     ensure   => $ensure,
+    name     => $package_name,
     provider => $package_provider,
   }
 

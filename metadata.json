@@ -3,69 +3,43 @@
   "version": "2.1.0",
   "source": "https://github.com/justindowning/puppet-statsd",
   "author": "Justin Downing",
-  "license": "Apache License, Version 2.0",
+  "license": "Apache-2.0",
   "summary": "Setup and manage statsd",
   "description": "Setup and manage statsd",
   "project_page": "https://github.com/justindowning/puppet-statsd",
+  "source": "https://github.com/justindowning/puppet-statsd.git",
+  "issues_url": "https://github.com/justindowning/puppet-statsd/issues",
   "dependencies": [
-    {
-      "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.1.0"
-    }
+    { "name": "puppetlabs/stdlib", "version_requirement": ">=4.1.0 <5.0.0" }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
-      "operatingsystemrelease": [
-        "5",
-        "6"
-      ]
+      "operatingsystemrelease": [ "5", "6", "7" ]
     },
     {
       "operatingsystem": "CentOS",
-      "operatingsystemrelease": [
-        "5",
-        "6"
-      ]
+      "operatingsystemrelease": [ "5", "6", "7" ]
     },
     {
       "operatingsystem": "OracleLinux",
-      "operatingsystemrelease": [
-        "5",
-        "6"
-      ]
+      "operatingsystemrelease": [ "5", "6", "7" ]
     },
     {
       "operatingsystem": "Scientific",
-      "operatingsystemrelease": [
-        "5",
-        "6"
-      ]
+      "operatingsystemrelease": [ "5", "6", "7" ]
     },
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": [
-        "6",
-        "7"
-      ]
+      "operatingsystemrelease": [ "6", "7" ]
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [
-        "10.04",
-        "12.04",
-        "14.04"
-      ]
+      "operatingsystemrelease": [ "10.04", "12.04", "14.04" ]
     }
   ],
   "requirements": [
-    {
-      "name": "pe",
-      "version_requirement": "3.2.x"
-    },
-    {
-      "name": "puppet",
-      "version_requirement": "3.x"
-    }
+    { "name": "pe", "version_requirement": "3.x" },
+    { "name": "puppet", "version_requirement": "3.x" }
   ]
 }
