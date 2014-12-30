@@ -1,6 +1,6 @@
 # puppet-statsd
 
-[![Puppet Forge](http://img.shields.io/puppetforge/v/jdowning/statsd.svg)](https://forge.puppetlabs.com/jdowning/statsd) [![Build Status](https://travis-ci.org/justindowning/puppet-statsd.png)](https://travis-ci.org/justindowning/puppet-statsd)
+[![Build Status](https://travis-ci.org/justindowning/puppet-statsd.png)](https://travis-ci.org/justindowning/puppet-statsd) [![Puppet Forge](http://img.shields.io/puppetforge/v/jdowning/statsd.svg)](https://forge.puppetlabs.com/jdowning/statsd)
 
 ## Description
 
