@@ -7,22 +7,20 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/tmp/puppet-modules/statsd", type: "rsync", rsync__exclude: ".git/"
 
   config.vm.define "centos" do |centos|
-    centos.vm.box     = 'centos64'
-    centos.vm.box_url = 'http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box'
+    centos.vm.box     = 'puppetlabs/centos-7.0-64-puppet'
     centos.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "tests"
-      puppet.manifest_file  = "vagrant.pp"
+      puppet.manifests_path = "tests/vagrant"
+      puppet.manifest_file  = "centos.pp"
       puppet.options        = ["--modulepath", "/tmp/puppet-modules"]
     end
   end
 
   config.vm.define "ubuntu", primary: true do |ubuntu|
-    ubuntu.vm.box     = 'ubuntu64'
-    ubuntu.vm.box_url = 'http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box'
-    ubuntu.vm.provision :shell, :inline => "sudo aptitude update"
+    ubuntu.vm.box     = 'puppetlabs/ubuntu-14.04-64-puppet'
+    ubuntu.vm.provision :shell, :inline => "aptitude update"
     ubuntu.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "tests"
-      puppet.manifest_file  = "vagrant.pp"
+      puppet.manifests_path = "tests/vagrant"
+      puppet.manifest_file  = "ubuntu.pp"
       puppet.options        = ["--modulepath", "/tmp/puppet-modules"]
     end
   end
