@@ -1,6 +1,7 @@
 ---
 fixtures:
   repositories:
+    epel: https://github.com/stahnma/puppet-module-epel
     nodejs: https://github.com/puppetlabs/puppetlabs-nodejs
     stdlib: https://github.com/puppetlabs/puppetlabs-stdlib
   symlinks:
