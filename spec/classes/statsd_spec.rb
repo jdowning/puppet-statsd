@@ -1,13 +1,34 @@
 require 'spec_helper'
 
-describe 'statsd' do
+describe 'statsd', :type => :class do
 
-  let(:facts) { { :osfamily => 'Debian' } }
+  ['Debian', 'RedHat'].each do |osfamily|
+    context "using #{osfamily}" do
+      let(:facts) { {
+        :osfamily => osfamily
+      } }
 
-  it { should contain_class("statsd::params") }
-  it { should contain_statsd__backends }
-  it { should contain_statsd__config }
-  it { should contain_package('statsd').with_ensure('present') }
-  it { should contain_service('statsd').with_ensure('running') }
+      it { should contain_class('statsd') }
+      it { should contain_class('statsd::params') }
+      it { should contain_statsd__backends }
+      it { should contain_statsd__config }
+      it { should contain_package('statsd').with_ensure('present') }
+      it { should contain_service('statsd').with_ensure('running') }
+
+      it { should contain_file('/etc/statsd') }
+      it { should contain_file('/etc/statsd/localConfig.js') }
+      it { should contain_file('/etc/default/statsd') }
+      it { should contain_file('/var/log/statsd') }
+      it { should contain_file('/usr/local/sbin/statsd') }
+
+      if osfamily == 'Debian'
+        it { should contain_file('/etc/init/statsd.conf') }
+      end
+
+      if osfamily == 'RedHat'
+        it { should contain_file('/etc/init.d/statsd') }
+      end
+    end
+  end
 
 end
