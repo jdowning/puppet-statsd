@@ -14,6 +14,7 @@ describe 'statsd', :type => :class do
       it { should contain_statsd__config }
       it { should contain_package('statsd').with_ensure('present') }
       it { should contain_service('statsd').with_ensure('running') }
+      it { should contain_service('statsd').with_enable(true) }
 
       it { should contain_file('/etc/statsd') }
       it { should contain_file('/etc/statsd/localConfig.js') }
@@ -27,6 +28,20 @@ describe 'statsd', :type => :class do
 
       if osfamily == 'RedHat'
         it { should contain_file('/etc/init.d/statsd') }
+      end
+
+      describe 'stopping the statsd service' do
+	let(:params) {{
+	  :service_ensure => 'stopped',
+        }}
+        it { should contain_service('statsd').with_ensure('stopped') }
+      end
+
+      describe 'disabling the statsd service' do
+	let(:params) {{
+	  :service_enable => false,
+        }}
+        it { should contain_service('statsd').with_enable(false) }
       end
     end
   end
