@@ -8,6 +8,9 @@ class statsd (
   $address                           = $statsd::params::address,
   $configfile                        = $statsd::params::configfile,
 
+  $service_ensure                    = $statsd::params::service_ensure, 
+  $service_enable                    = $statsd::params::service_enable, 
+
   $backends                          = $statsd::params::backends,
   $debug                             = $statsd::params::debug,
   $mgmt_address                      = $statsd::params::mgmt_address,
@@ -81,8 +84,8 @@ class statsd (
   }
 
   service { 'statsd':
-    ensure    => running,
-    enable    => true,
+    ensure    => $service_ensure,
+    enable    => $service_enable,
     hasstatus => true,
     provider  => $init_provider,
     require   => [ Package['statsd'], File['/var/log/statsd'] ],

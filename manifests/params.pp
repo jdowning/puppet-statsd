@@ -8,6 +8,9 @@ class statsd::params {
   $address                           = '0.0.0.0'
   $configfile                        = '/etc/statsd/localConfig.js'
 
+  $service_ensure                    = 'running'
+  $service_enable                    = true
+
   $backends                          = [ './backends/graphite' ]
   $debug                             = false
   $mgmt_address                      = '0.0.0.0'
