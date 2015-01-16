@@ -43,6 +43,13 @@ describe 'statsd', :type => :class do
         }}
         it { should contain_service('statsd').with_enable(false) }
       end
+
+      describe 'disabling the management of the statsd service' do
+	let(:params) {{
+	  :manage_service => false,
+        }}
+        it { should_not contain_service('statsd') }
+      end
     end
   end
 

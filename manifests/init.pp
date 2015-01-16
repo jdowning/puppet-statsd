@@ -8,6 +8,7 @@ class statsd (
   $address                           = $statsd::params::address,
   $configfile                        = $statsd::params::configfile,
 
+  $manage_service                    = $statsd::params::manage_service, 
   $service_ensure                    = $statsd::params::service_ensure, 
   $service_enable                    = $statsd::params::service_enable, 
 
@@ -83,11 +84,13 @@ class statsd (
     provider => $package_provider,
   }
 
-  service { 'statsd':
-    ensure    => $service_ensure,
-    enable    => $service_enable,
-    hasstatus => true,
-    provider  => $init_provider,
-    require   => [ Package['statsd'], File['/var/log/statsd'] ],
+  if $manage_service == true {
+    service { 'statsd':
+      ensure    => $service_ensure,
+      enable    => $service_enable,
+      hasstatus => true,
+      provider  => $init_provider,
+      require   => [ Package['statsd'], File['/var/log/statsd'] ],
+    }
   }
 }

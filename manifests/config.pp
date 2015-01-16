@@ -39,7 +39,10 @@ class statsd::config (
   File {
     owner  => 'root',
     group  => 'root',
-    notify => Service['statsd'],
+  }
+
+  if $statsd::manage_service == true {
+    File <| |> ~> Service['statsd']
   }
 
 }
