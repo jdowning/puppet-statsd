@@ -8,6 +8,7 @@ class statsd::params {
   $address                           = '0.0.0.0'
   $configfile                        = '/etc/statsd/localConfig.js'
 
+  $manage_service                    = true
   $service_ensure                    = 'running'
   $service_enable                    = true
 
