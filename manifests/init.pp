@@ -7,6 +7,7 @@ class statsd (
   $port                              = $statsd::params::port,
   $address                           = $statsd::params::address,
   $configfile                        = $statsd::params::configfile,
+  $logfile                           = $statsd::params::logfile,
 
   $manage_service                    = $statsd::params::manage_service, 
   $service_ensure                    = $statsd::params::service_ensure, 

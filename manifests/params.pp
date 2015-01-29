@@ -7,6 +7,7 @@ class statsd::params {
   $port                              = '8125'
   $address                           = '0.0.0.0'
   $configfile                        = '/etc/statsd/localConfig.js'
+  $logfile                           = '/var/log/statsd/statsd.log'
 
   $manage_service                    = true
   $service_ensure                    = 'running'
