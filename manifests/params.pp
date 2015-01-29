@@ -19,7 +19,7 @@ class statsd::params {
   $statsd_title                      = 'statsd'
   $healthStatus                      = 'up'
   $dumpMessages                      = false
-  $flushInterval                     = '10000'
+  $flushInterval                     = '10'
   $percentThreshold                  = ['90']
   $flush_counts                      = true
 
@@ -45,7 +45,7 @@ class statsd::params {
 
   $librato_email                     = undef
   $librato_token                     = undef
-  $librato_snapTime                  = '10000'
+  $librato_snapTime                  = '10'
   $librato_countersAsGauges          = true
   $librato_skipInternalMetrics       = true
   $librato_retryDelaySecs            = '5'
