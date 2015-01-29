@@ -55,11 +55,15 @@
 , librato: {
     email: "<%= @librato_email %>",
     token: "<%= @librato_token %>",
+    source: "<% @librato_source %>",
     snapTime: "<%= @librato_snapTime %>",
-    countersAsGauges: "<%= @librato_countersAsGauges %>",
-    skipInternalMetrics: "<%= @librato_skipInternalMetrics %>",
+    countersAsGauges: <%= @librato_countersAsGauges %>,
+    skipInternalMetrics: <%= @librato_skipInternalMetrics %>,
     retryDelaySecs: "<%= @librato_retryDelaySecs %>",
-    postTimeoutSecs: "<%= @librato_postTimeoutSecs %>"
+    postTimeoutSecs: "<%= @librato_postTimeoutSecs %>",
+    includeMetrics: [<%= @librato_includeMetrics %>],
+    excludeMetrics: [<%= @librato_excludeMetrics %>],
+    globalPrefix: "<%= @librato_globalPrefix %>",
   }
 <% end -%>
 

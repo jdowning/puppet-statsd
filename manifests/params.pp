@@ -46,11 +46,15 @@ class statsd::params {
 
   $librato_email                     = undef
   $librato_token                     = undef
-  $librato_snapTime                  = '10000'
+  $librato_source                    = undef
+  $librato_snapTime                  = '10'
   $librato_countersAsGauges          = true
   $librato_skipInternalMetrics       = true
   $librato_retryDelaySecs            = '5'
   $librato_postTimeoutSecs           = '4'
+  $librato_includeMetrics            = undef
+  $librato_excludeMetrics            = undef
+  $librato_globalPrefix              = undef
 
   $stackdriver_apiKey                = undef
   $stackdriver_source                = undef

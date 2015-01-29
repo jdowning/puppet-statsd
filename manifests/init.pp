@@ -46,11 +46,15 @@ class statsd (
 
   $librato_email                     = $statsd::params::librato_email,
   $librato_token                     = $statsd::params::librato_token,
+  $librato_source                    = $statsd::params::librato_source,
   $librato_snapTime                  = $statsd::params::librato_snapTime,
   $librato_countersAsGauges          = $statsd::params::librato_countersAsGauges,
   $librato_skipInternalMetrics       = $statsd::params::librato_skipInternalMetrics,
   $librato_retryDelaySecs            = $statsd::params::librato_retryDelaySecs,
   $librato_postTimeoutSecs           = $statsd::params::librato_postTimeoutSecs,
+  $librato_includeMetrics            = $statsd::params::librato_includeMetrics,
+  $librato_excludeMetrics            = $statsd::params::librato_excludeMetrics,
+  $librato_globalPrefix              = $statsd::params::librato_globalPrefix,
 
   $stackdriver_apiKey                = $statsd::params::stackdriver_apiKey,
   $stackdriver_source                = $statsd::params::stackdriver_source,
