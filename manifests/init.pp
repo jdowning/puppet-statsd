@@ -9,9 +9,9 @@ class statsd (
   $configfile                        = $statsd::params::configfile,
   $logfile                           = $statsd::params::logfile,
 
-  $manage_service                    = $statsd::params::manage_service, 
-  $service_ensure                    = $statsd::params::service_ensure, 
-  $service_enable                    = $statsd::params::service_enable, 
+  $manage_service                    = $statsd::params::manage_service,
+  $service_ensure                    = $statsd::params::service_ensure,
+  $service_enable                    = $statsd::params::service_enable,
 
   $backends                          = $statsd::params::backends,
   $debug                             = $statsd::params::debug,
