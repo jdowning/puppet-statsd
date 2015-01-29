@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "ubuntu", primary: true do |ubuntu|
     ubuntu.vm.box     = 'puppetlabs/ubuntu-14.04-64-puppet'
-    ubuntu.vm.provision :shell, :inline => "aptitude update"
+    ubuntu.vm.provision :shell, :inline => "echo 'Updating apt...' && apt-get update -qq"
     ubuntu.vm.provision :puppet do |puppet|
       puppet.manifests_path = "tests/vagrant"
       puppet.manifest_file  = "ubuntu.pp"
