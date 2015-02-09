@@ -95,6 +95,7 @@ class statsd (
       enable    => $service_enable,
       hasstatus => true,
       provider  => $init_provider,
+      subscribe => Class['statsd::config'],
       require   => [ Package['statsd'], File['/var/log/statsd'] ],
     }
   }
