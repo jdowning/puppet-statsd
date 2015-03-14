@@ -66,6 +66,7 @@ class statsd::params {
   $config                            = { }
 
   $dependencies                      = undef
+  $manage_backends                   = true
 
   $package_name                      = 'statsd'
   $package_provider                  = 'npm'

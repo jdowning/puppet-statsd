@@ -74,13 +74,16 @@ class statsd (
   $package_provider                  = $statsd::params::package_provider,
 
   $dependencies                      = $statsd::params::dependencies,
+  $manage_backends                   = $statsd::params::manage_backends,
 ) inherits statsd::params {
 
   if $dependencies {
     $dependencies -> Class['statsd']
   }
 
-  class { 'statsd::backends': }
+  if $manage_backends {
+    class { 'statsd::backends': }
+  }
   class { 'statsd::config': }
 
   package { 'statsd':
