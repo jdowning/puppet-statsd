@@ -13,6 +13,7 @@ class statsd (
   $service_ensure                    = $statsd::params::service_ensure,
   $service_enable                    = $statsd::params::service_enable,
 
+  $manage_backends                   = $statsd::params::manage_backends,
   $backends                          = $statsd::params::backends,
   $debug                             = $statsd::params::debug,
   $mgmt_address                      = $statsd::params::mgmt_address,
@@ -74,7 +75,6 @@ class statsd (
   $package_provider                  = $statsd::params::package_provider,
 
   $dependencies                      = $statsd::params::dependencies,
-  $manage_backends                   = $statsd::params::manage_backends,
 ) inherits statsd::params {
 
   if $dependencies {

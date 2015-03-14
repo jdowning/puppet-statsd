@@ -11,7 +11,7 @@ env:
   - PUPPET_VERSION="3.4.3"
   - PUPPET_VERSION="3.5.1"
   - PUPPET_VERSION="3.6.2"
-  - PUPPET_VERSION="3.7.3"
+  - PUPPET_VERSION="3.7.4"
 sudo: false
 bundler_args: --without development
 script: bundle exec rake spec SPEC_OPTS='--format documentation'

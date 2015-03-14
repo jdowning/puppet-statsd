@@ -13,6 +13,7 @@ class statsd::params {
   $service_ensure                    = 'running'
   $service_enable                    = true
 
+  $manage_backends                   = true
   $backends                          = [ './backends/graphite' ]
   $debug                             = false
   $mgmt_address                      = '0.0.0.0'
@@ -66,7 +67,6 @@ class statsd::params {
   $config                            = { }
 
   $dependencies                      = undef
-  $manage_backends                   = true
 
   $package_name                      = 'statsd'
   $package_provider                  = 'npm'

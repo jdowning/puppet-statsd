@@ -1,6 +1,55 @@
 CHANGELOG
 =========
 
+2.4.0
+-----
+
+* add $manage_backends parameter
+* fixed erb for librato_source
+* use selective file permissions
+* update File ~> Service dependency
+
+2.3.1
+-----
+
+* fix linting errors
+
+2.3.0
+-----
+
+* Update specs for better coverage
+* Parameterize service (disable, enable, ensure)
+* Paramterize logfile location
+* Update Vagrant config for Ubuntu
+* Update Librato backend configuration with new params
+* fix librato_snapTime to default to 10s
+
+2.2.1
+-----
+
+* add rspec-puppet and code coverage to spec tests
+* fix linting warnings on backends.pp
+
+2.2.0
+-----
+
+* add stahnma-epel dependency
+* use nobody:nogroup permissions for Ubuntu upstart script
+* parameterize $statsd::config::configfile
+* update Travis CI config
+* fix linting, style warnings
+* update Gemfile, Puppetfile, License, Readme, Rakefile
+* split Vagrant config for CentOS and Ubuntu -- use latest Puppet Labs boxes for both
+
+2.1.0
+-----
+
+* fix bug with service provider parameter
+* add $nodejs_bin parameter for custom nodejs binary path (default: /usr/bin/node)
+* add $configfile parameter for custom statsd config path (default: /etc/statsd/localConfig.js)
+* add $package_name parameter for custom statsd package name (default: statsd)
+* add $package_provider parameter for custom statsd package provider (default: npm)
+
 2.0.1
 -----
 

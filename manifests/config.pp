@@ -15,8 +15,8 @@ class statsd::config (
   file { $configfile:
     content => template('statsd/localConfig.js.erb'),
     mode    => '0644',
-    owner  => 'root',
-    group  => 'root',
+    owner   => 'root',
+    group   => 'root',
   }
 
   file { $statsd::init_location:
@@ -28,8 +28,8 @@ class statsd::config (
 
   file {  '/etc/default/statsd':
     content => template('statsd/statsd-defaults.erb'),
-    owner  => 'root',
-    group  => 'root',
+    owner   => 'root',
+    group   => 'root',
     mode    => '0755',
   }
 
