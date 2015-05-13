@@ -25,6 +25,12 @@ class statsd (
   $percentThreshold                  = $statsd::params::percentThreshold,
   $flush_counts                      = $statsd::params::flush_counts,
 
+  $deleteIdleStats                   = $statsd::params::deleteIdleStats,
+  $deleteGauges                      = $statsd::params::deleteGauges,
+  $deleteTimers                      = $statsd::params::deleteTimers,
+  $deleteSets                        = $statsd::params::deleteSets,
+  $deleteCounters                    = $statsd::params::deleteCounters,
+
   $graphiteHost                      = $statsd::params::graphiteHost,
   $graphitePort                      = $statsd::params::graphitePort,
   $graphite_legacyNamespace          = $statsd::params::graphite_legacyNamespace,
