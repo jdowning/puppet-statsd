@@ -1,6 +1,9 @@
 # HEADER: This file is being managed by Puppet. Any manual changes to this file
 # will be overwritten.
 
+<% @environment.each do |val| -%>
+<%= val %>
+<% end -%>
 NODEJS="<%= @nodejs_bin %>"
 STATSJS="<%= @statsjs %>"
 STATSD_CONFIG="<%= @configfile %>"

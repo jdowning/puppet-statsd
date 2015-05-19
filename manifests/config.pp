@@ -3,7 +3,8 @@ class statsd::config (
   $configfile  = $statsd::configfile,
   $logfile     = $statsd::logfile,
   $statsjs     = "${statsd::node_module_dir}/statsd/stats.js",
-  $nodejs_bin  = $statsd::nodejs_bin
+  $nodejs_bin  = $statsd::nodejs_bin,
+  $environment = $statsd::environment
 ) {
 
   file { '/etc/statsd':
