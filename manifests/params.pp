@@ -25,6 +25,12 @@ class statsd::params {
   $percentThreshold                  = ['90']
   $flush_counts                      = true
 
+  $deleteIdleStats                   = undef
+  $deleteGauges                      = undef
+  $deleteTimers                      = undef
+  $deleteSets                        = undef
+  $deleteCounters                    = undef
+
   $graphiteHost                      = 'localhost'
   $graphitePort                      = '2003'
   $graphite_legacyNamespace          = true
