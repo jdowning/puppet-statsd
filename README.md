@@ -78,3 +78,18 @@ bundle install
 bundle exec librarian-puppet install
 vagrant up
 ```
+
+## Custom Nodejs Environment
+
+Use the `$environment` parameter to add custom environment variables or run scripts in the `/etc/default/statsd` file.  For example, you could enable Redhat's software collections and add a custom path like so:
+
+```
+class { 'statsd':
+  backends     => ['./backends/graphite'],
+  graphiteHost => 'localhost',
+  environment  => [
+    'source /opt/rh/nodejs010/enable',
+    'PATH=/opt/my/path:$PATH',
+  ],
+}
+```
