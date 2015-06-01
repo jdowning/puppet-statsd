@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+2.5.0
+-----
+
+* add delete parameters
+* add environment parameter to inject env vars into running daemon
+
 2.4.0
 -----
 
