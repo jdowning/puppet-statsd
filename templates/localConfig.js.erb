@@ -87,10 +87,10 @@
 , stackdriver: {
     apiKey: "<%= @stackdriver_apiKey %>",
     source: "<%= @stackdriver_source %>",
-    sourceFromPrefix: "<%= @stackdriver_sourceFromPrefix %>",
+    sourceFromPrefix: <%= @stackdriver_sourceFromPrefix %>,
     sourcePrefixSeparator: "<%= @stackdriver_sourcePrefixSeparator %>",
-    sendTimerPercentiles: "<%= @stackdriver_sendTimerPercentiles %>",
-    debug: "<%= @stackdriver_debug %>"
+    sendTimerPercentiles: <%= @stackdriver_sendTimerPercentiles %>,
+    debug: <%= @stackdriver_debug %>
   }
 <% end -%>
 
