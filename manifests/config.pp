@@ -5,7 +5,7 @@ class statsd::config (
   $statsjs     = "${statsd::node_module_dir}/statsd/stats.js",
   $nodejs_bin  = $statsd::nodejs_bin,
   $environment = $statsd::environment
-) {
+) inherits statsd {
 
   file { '/etc/statsd':
     ensure => directory,
