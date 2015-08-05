@@ -1,4 +1,4 @@
-class { 'nodejs': manage_repo => true }->
+class { 'nodejs': manage_package_repo => true }->
 class { 'statsd':
   backends              => [
     './backends/graphite',
