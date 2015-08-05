@@ -7,6 +7,14 @@ GIT
       puppetlabs-stdlib (< 5.0.0, >= 4.1.0)
 
 GIT
+  remote: git://github.com/puppetlabs/puppetlabs-apt.git
+  ref: master
+  sha: f05e43c28588a280a42333f9ca3a506a7121849d
+  specs:
+    puppetlabs-apt (2.1.1)
+      puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
+
+GIT
   remote: git://github.com/puppetlabs/puppetlabs-stdlib.git
   ref: master
   sha: 79e79e8bbad5f3226b51fae5a2a64bc9a84031ae
@@ -22,6 +30,7 @@ GIT
 
 DEPENDENCIES
   puppet-nodejs (>= 0)
+  puppetlabs-apt (>= 0)
   puppetlabs-stdlib (>= 0)
   stahnma-epel (>= 0)
 
