@@ -63,6 +63,7 @@ class statsd::params {
   $librato_includeMetrics            = undef
   $librato_excludeMetrics            = undef
   $librato_globalPrefix              = undef
+  $librato_alwaysSuffixPercentile    = false
 
   $stackdriver_apiKey                = undef
   $stackdriver_source                = undef
