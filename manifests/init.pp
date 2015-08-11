@@ -47,6 +47,7 @@ class statsd (
   $influxdb_database                 = $statsd::params::influxdb_database,
   $influxdb_username                 = $statsd::params::influxdb_username,
   $influxdb_password                 = $statsd::params::influxdb_password,
+  $influxdb_version                  = $statsd::params::influxdb_version,
   $influxdb_flush                    = $statsd::params::influxdb_flush,
   $influxdb_proxy                    = $statsd::params::influxdb_proxy,
   $influxdb_proxy_suffix             = $statsd::params::influxdb_proxy_suffix,

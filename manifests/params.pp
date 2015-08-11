@@ -47,6 +47,7 @@ class statsd::params {
   $influxdb_database                 = 'statsd'
   $influxdb_username                 = 'root'
   $influxdb_password                 = 'root'
+  $influxdb_version                  = '0.8'
   $influxdb_flush                    = true
   $influxdb_proxy                    = false
   $influxdb_proxy_suffix             = 'raw'
