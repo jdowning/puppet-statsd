@@ -1,4 +1,9 @@
-class { 'nodejs': manage_repo => true }->
+case $operatingsystem {
+  /^(Debian|Ubuntu)$/: { include apt }
+  'RedHat', 'CentOS':  { include epel }
+}
+
+class { 'nodejs': manage_package_repo => true }->
 class { 'statsd':
   backends              => [
     './backends/graphite',
