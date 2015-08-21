@@ -63,6 +63,7 @@ class statsd (
   $librato_includeMetrics            = $statsd::params::librato_includeMetrics,
   $librato_excludeMetrics            = $statsd::params::librato_excludeMetrics,
   $librato_globalPrefix              = $statsd::params::librato_globalPrefix,
+  $librato_alwaysSuffixPercentile    = $statsd::params::librato_alwaysSuffixPercentile,
 
   $stackdriver_apiKey                = $statsd::params::stackdriver_apiKey,
   $stackdriver_source                = $statsd::params::stackdriver_source,
