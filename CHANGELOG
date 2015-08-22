@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+2.6.0
+-----
+
+* fixed bug where variables where not properly passed to config template [GH-8]
+* ensure Stackdriver boolean configs are not wrapped in a string literal
+* add librato_alwaysSuffixPercentile parameter
+* add influxdb_version paramter
+* update Vagrant config to be compatible with Puppet 4
+* update TravisCI to use Puppet future parser for specs
+
 2.5.0
 -----
 
