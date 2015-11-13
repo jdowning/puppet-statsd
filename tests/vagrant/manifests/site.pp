@@ -9,11 +9,18 @@ class { 'statsd':
     './backends/graphite',
     'statsd-influxdb-backend',
     'statsd-librato-backend',
-    'stackdriver-statsd-backend'
+    'stackdriver-statsd-backend',
+    './backends/repeater'
   ],
   graphite_globalSuffix => 'foobar',
   influxdb_host         => 'localhost',
   librato_email         => 'foo@bar.com',
   librato_token         => 'secret_token',
-  stackdriver_apiKey    => 'foobar'
+  stackdriver_apiKey    => 'foobar',
+  repeater              => [
+    {
+      'host' => '1.1.1.1',
+      'port' => 8215
+    }
+  ]
 }

@@ -55,6 +55,8 @@ class statsd::config (
   $stackdriver_sourcePrefixSeparator = $statsd::stackdriver_sourcePrefixSeparator,
   $stackdriver_sendTimerPercentiles  = $statsd::stackdriver_sendTimerPercentiles,
   $stackdriver_debug                 = $statsd::stackdriver_debug,
+  $repeater                          = $statsd::repeater,
+  $repeaterProtocol                  = $statsd::repeaterProtocol,
   $config                            = $statsd::config,
 
   $environment = $statsd::environment,

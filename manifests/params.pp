@@ -73,6 +73,9 @@ class statsd::params {
   $stackdriver_sendTimerPercentiles  = false
   $stackdriver_debug                 = false
 
+  $repeater                          = undef
+  $repeaterProtocol                  = undef
+
   $config                            = { }
 
   $dependencies                      = undef

@@ -31,6 +31,7 @@ You can install multiple backends. Supported backends include:
 * influxdb  
 * librato  
 * stackdriver  
+* repeater
 
 More information about the installation of each backend available in [manifests/backends.pp](https://github.com/justindowning/puppet-statsd/blob/master/manifests/backends.pp).
 
@@ -68,6 +69,16 @@ class { 'statsd':
 class { 'statsd':
   backends           => ['stackdriver-statsd-backend'],
   stackdriver_apiKey => 'apiKey'
+}
+```
+
+### Repeater
+
+```
+class { 'statsd':
+  backends         => ['./backends/repeater'],
+  repeater         => [{"host" => 'my.statsd.host', port => 8125}],
+  repeaterProtocol => 'udp4'
 }
 ```
 
