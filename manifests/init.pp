@@ -73,6 +73,9 @@ class statsd (
   $stackdriver_sendTimerPercentiles  = $statsd::params::stackdriver_sendTimerPercentiles,
   $stackdriver_debug                 = $statsd::params::stackdriver_debug,
 
+  $repeater                          = $statsd::params::repeater,
+  $repeaterProtocol                  = $statsd::params::repeaterProtocol,
+
   $config                            = $statsd::params::config,
 
   $init_location                     = $statsd::params::init_location,

@@ -96,6 +96,13 @@
   }
 <% end -%>
 
+<% if @backends.grep(/repeater/).any? -%>
+, repeater: [<%= @repeater.map { |r| r.to_json }.join(", ") %>]
+  <% if defined? @repeaterProtocol -%>
+, repeaterProtocol: <%= @repeaterProtocol %>
+  <% end -%>
+<% end -%>
+
 <% @config.each do |k, v| -%>
 , <%= k %>: <%= v %>
 <% end -%>
