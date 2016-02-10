@@ -52,6 +52,8 @@ class statsd (
   $influxdb_proxy                    = $statsd::params::influxdb_proxy,
   $influxdb_proxy_suffix             = $statsd::params::influxdb_proxy_suffix,
   $influxdb_proxy_flushInterval      = $statsd::params::influxdb_proxy_flushInterval,
+  $influxdb_include_statsd_metrics   = $statsd::params::influxdb_include_statsd_metrics,
+  $influxdb_include_influxdb_metrics = $statsd::params::influxdb_include_influxdb_metrics,
 
   $librato_email                     = $statsd::params::librato_email,
   $librato_token                     = $statsd::params::librato_token,

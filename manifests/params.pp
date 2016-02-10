@@ -52,6 +52,8 @@ class statsd::params {
   $influxdb_proxy                    = false
   $influxdb_proxy_suffix             = 'raw'
   $influxdb_proxy_flushInterval      = '10000'
+  $influxdb_include_statsd_metrics   = false
+  $influxdb_include_influxdb_metrics = false
 
   $librato_email                     = undef
   $librato_token                     = undef

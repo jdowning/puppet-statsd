@@ -64,7 +64,9 @@
       enable: <%= @influxdb_proxy %>,
       suffix: "<%= @influxdb_proxy_suffix %>",
       flushInterval: "<%= @influxdb_proxy_flushInterval %>"
-    }
+    },
+    includeStatsdMetrics: <%= @influxdb_include_statsd_metrics %>,
+    includeInfluxdbMetrics: <%= @influxdb_include_influxdb_metrics %>
   }
 <% end -%>
 
