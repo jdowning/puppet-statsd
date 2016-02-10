@@ -6,7 +6,7 @@ class statsd::backends {
   # Make sure $statsd::influxdb_host is set
   if $backends =~ /influxdb/ {
     exec { 'install-statsd-influxdb-backend':
-      command => '/usr/bin/npm install --save statsd-influxdb-backend',
+      command => "/usr/bin/npm install --save ${statsd::influxdb_package_name}",
       cwd     => "${statsd::node_module_dir}/statsd",
       unless  => "/usr/bin/test -d ${node_base}/statsd-influxdb-backend",
       require => Package['statsd'],
