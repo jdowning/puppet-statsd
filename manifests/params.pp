@@ -81,6 +81,7 @@ class statsd::params {
   $dependencies                      = undef
 
   $package_name                      = 'statsd'
+  $package_source                    = undef
   $package_provider                  = 'npm'
 
   case $::osfamily {
