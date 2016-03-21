@@ -26,6 +26,7 @@ class statsd::params {
   $percentThreshold                  = ['90']
   $flush_counts                      = true
   $prefix_stats                      = 'statsd'
+  $keyNameSanitize                   = true
 
   $deleteIdleStats                   = undef
   $deleteGauges                      = undef
