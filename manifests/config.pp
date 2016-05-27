@@ -28,6 +28,7 @@ class statsd::config (
   $graphite_prefixGauge              = $statsd::graphite_prefixGauge,
   $graphite_prefixSet                = $statsd::graphite_prefixSet,
   $graphite_globalSuffix             = $statsd::graphite_globalSuffix,
+  $influxdb_package_name             = $statsd::influxdb_package_name,
   $influxdb_host                     = $statsd::influxdb_host,
   $influxdb_port                     = $statsd::influxdb_port,
   $influxdb_database                 = $statsd::influxdb_database,

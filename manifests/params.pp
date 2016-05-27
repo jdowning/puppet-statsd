@@ -43,6 +43,7 @@ class statsd::params {
   $graphite_prefixSet                = 'sets'
   $graphite_globalSuffix             = undef
 
+  $influxdb_package_name             = 'statsd-influxdb-backend'
   $influxdb_host                     = undef
   $influxdb_port                     = '8086'
   $influxdb_database                 = 'statsd'
