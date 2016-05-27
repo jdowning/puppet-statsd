@@ -88,6 +88,7 @@ class statsd (
   $init_script                       = $statsd::params::init_script,
 
   $package_name                      = $statsd::params::package_name,
+  $package_source                    = $statsd::params::package_source,
   $package_provider                  = $statsd::params::package_provider,
 
   $dependencies                      = $statsd::params::dependencies,
@@ -106,6 +107,7 @@ class statsd (
     ensure   => $ensure,
     name     => $package_name,
     provider => $package_provider,
+    source   => $package_source
   }
 
   if $manage_service == true {
