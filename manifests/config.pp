@@ -38,6 +38,8 @@ class statsd::config (
   $influxdb_proxy                    = $statsd::influxdb_proxy,
   $influxdb_proxy_suffix             = $statsd::influxdb_proxy_suffix,
   $influxdb_proxy_flushInterval      = $statsd::influxdb_proxy_flushInterval,
+  $influxdb_include_statsd_metrics   = $statsd::influxdb_include_statsd_metrics,
+  $influxdb_include_influxdb_metrics = $statsd::influxdb_include_influxdb_metrics,
   $librato_email                     = $statsd::librato_email,
   $librato_token                     = $statsd::librato_token,
   $librato_source                    = $statsd::librato_source,
