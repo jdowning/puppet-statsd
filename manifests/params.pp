@@ -25,6 +25,7 @@ class statsd::params {
   $flushInterval                     = '10000'
   $percentThreshold                  = ['90']
   $flush_counts                      = true
+  $prefix_stats                      = 'statsd'
 
   $deleteIdleStats                   = undef
   $deleteGauges                      = undef

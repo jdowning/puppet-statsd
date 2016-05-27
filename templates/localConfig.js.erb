@@ -14,6 +14,7 @@
 , flushInterval: "<%= @flushInterval %>"
 , percentThreshold: [<%= @percentThreshold.join(', ') %>]
 , flush_counts: <%= @flush_counts %>
+, prefixStats: "<%= @prefix_stats %>"
 
 <% if defined? @deleteIdleStats -%>
 , deleteIdleStats: <%= @deleteIdleStats %>
