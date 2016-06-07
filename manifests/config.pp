@@ -90,7 +90,7 @@ class statsd::config (
     group  => 'root',
   }
 
-  file {  '/etc/default/statsd':
+  file {  $statsd::init_sysconfig:
     content => template('statsd/statsd-defaults.erb'),
     owner   => 'root',
     group   => 'root',

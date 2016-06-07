@@ -84,6 +84,7 @@ class statsd (
   $config                            = $statsd::params::config,
 
   $init_location                     = $statsd::params::init_location,
+  $init_sysconfig                    = $statsd::params::init_sysconfig,
   $init_mode                         = $statsd::params::init_mode,
   $init_provider                     = $statsd::params::init_provider,
   $init_script                       = $statsd::params::init_script,
