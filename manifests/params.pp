@@ -3,7 +3,7 @@ class statsd::params {
   $ensure                            = 'present'
   $node_module_dir                   = '/usr/lib/node_modules'
   $nodejs_bin                        = '/usr/bin/node'
-  $environment                       = []
+  $sysconfig_append                       = []
 
   $port                              = '8125'
   $address                           = '0.0.0.0'
