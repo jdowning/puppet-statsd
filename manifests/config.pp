@@ -66,6 +66,7 @@ class statsd::config (
 
   $environment = $statsd::environment,
   $nodejs_bin  = $statsd::nodejs_bin,
+  $npm_bin     = $statsd::npm_bin,
   $statsjs     = "${statsd::node_module_dir}/statsd/stats.js",
   $logfile     = $statsd::logfile,
 ) {
