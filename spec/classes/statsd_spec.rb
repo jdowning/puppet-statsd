@@ -18,15 +18,16 @@ describe 'statsd', :type => :class do
 
       it { should contain_file('/etc/statsd') }
       it { should contain_file('/etc/statsd/localConfig.js') }
-      it { should contain_file('/etc/default/statsd') }
       it { should contain_file('/var/log/statsd') }
       it { should contain_file('/usr/local/sbin/statsd') }
 
       if osfamily == 'Debian'
+        it { should contain_file('/etc/default/statsd') }
         it { should contain_file('/etc/init/statsd.conf') }
       end
 
       if osfamily == 'RedHat'
+        it { should contain_file('/etc/sysconfig/statsd') }
         it { should contain_file('/etc/init.d/statsd') }
       end
 

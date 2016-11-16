@@ -4,7 +4,7 @@ class statsd (
   $node_module_dir                   = $statsd::params::node_module_dir,
   $nodejs_bin                        = $statsd::params::nodejs_bin,
   $npm_bin                           = $statsd::params::npm_bin,
-  $env_append                        = $statsd::params::sysconfig_append,
+  $env_append                        = $statsd::params::env_append,
 
   $port                              = $statsd::params::port,
   $address                           = $statsd::params::address,
