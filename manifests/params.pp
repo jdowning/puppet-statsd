@@ -4,7 +4,7 @@ class statsd::params {
   $node_module_dir                   = '/usr/lib/node_modules'
   $nodejs_bin                        = '/usr/bin/node'
   $npm_bin                           = '/usr/bin/npm'
-  $environment                       = []
+  $env_append                        = []
 
   $port                              = '8125'
   $address                           = '0.0.0.0'
@@ -92,16 +92,18 @@ class statsd::params {
 
   case $::osfamily {
     'RedHat', 'Amazon': {
-      $init_location = '/etc/init.d/statsd'
-      $init_mode     = '0755'
-      $init_provider = 'redhat'
-      $init_script   = 'puppet:///modules/statsd/statsd-init-rhel'
+      $init_location  = '/etc/init.d/statsd'
+      $init_sysconfig = '/etc/sysconfig/statsd'
+      $init_mode      = '0755'
+      $init_provider  = 'redhat'
+      $init_script    = 'puppet:///modules/statsd/statsd-init-rhel'
     }
     'Debian': {
-      $init_location = '/etc/init/statsd.conf'
-      $init_mode     = '0644'
-      $init_provider = 'upstart'
-      $init_script   = 'puppet:///modules/statsd/statsd-upstart'
+      $init_location  = '/etc/init/statsd.conf'
+      $init_sysconfig = '/etc/default/statsd'
+      $init_mode      = '0644'
+      $init_provider  = 'upstart'
+      $init_script    = 'puppet:///modules/statsd/statsd-upstart'
     }
     default: {
       fail('Unsupported OS Family')

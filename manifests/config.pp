@@ -64,7 +64,7 @@ class statsd::config (
   $repeaterProtocol                  = $statsd::repeaterProtocol,
   $config                            = $statsd::config,
 
-  $environment = $statsd::environment,
+  $env_append  = $statsd::env_append,
   $nodejs_bin  = $statsd::nodejs_bin,
   $npm_bin     = $statsd::npm_bin,
   $statsjs     = "${statsd::node_module_dir}/statsd/stats.js",
@@ -91,7 +91,7 @@ class statsd::config (
     group  => 'root',
   }
 
-  file {  '/etc/default/statsd':
+  file {  $statsd::init_sysconfig:
     content => template('statsd/statsd-defaults.erb'),
     owner   => 'root',
     group   => 'root',
