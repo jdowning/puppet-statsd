@@ -1,10 +1,7 @@
 {
   port: "<%= @port %>"
 , address: "<%= @address %>"
-, backends: [<% @backends.each do |backend| -%>
-  "<%= backend %>",
-  <% end -%>]
-
+, backends: [<%= @backends.map {|b| b.to_json }.join(',') %>]
 , debug: <%= @debug %>
 , keyNameSanitize: <%= @keyNameSanitize %>
 , mgmt_address: "<%= @mgmt_address %>"
@@ -103,7 +100,7 @@
 <% if @backends.grep(/repeater/).any? -%>
 , repeater: [<%= @repeater.map { |r| r.to_json }.join(", ") %>]
   <% if defined? @repeaterProtocol -%>
-, repeaterProtocol: <%= @repeaterProtocol %>
+, repeaterProtocol: "<%= @repeaterProtocol %>"
   <% end -%>
 <% end -%>
 
