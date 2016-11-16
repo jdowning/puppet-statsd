@@ -11,73 +11,152 @@ NAME="statsd"
 DAEMON="/usr/local/sbin/statsd"
 pidfile=/var/run/statsd.pid
 lockfile=/var/lock/subsys/statsd
-RETVAL=0
 STOP_TIMEOUT=${STOP_TIMEOUT-10}
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
-# Determine if we can use the -p option to daemon, killproc, and status.
-# RHEL < 5 can't.
-if status | grep -q -- '-p' 2>/dev/null; then
-    daemonopts="--pidfile $pidfile"
-    pidopts="-p $pidfile"
-fi
+# /etc/default/${NAME} is the Debian location.  Add the following for anyone
+# expecting this to be consistent with a Red Hat layout.
+[ -r /etc/sysconfig/${NAME} ] && . /etc/sysconfig/${NAME}
+
+eval "$( declare -f status | sed -e 's/\<status[[:space:]]()/orig_status()/' )"
+
+daemonopts="--pidfile $pidfile"
+pidopts="-p $pidfile"
  
+status() {
+    orig_status -p ${pidfile} ${NAME}
+}
+
 start() {
-  echo -n $"Starting $NAME: "
-  # See if it's already running. Look *only* at the pid file.
-  if [ -f ${pidfile} ]; then
-    failure "PID file exists for statsd"
-    RETVAL=1
-  else
+  local ret_val=0
+  status &>/dev/null || ret_val=${?}
+  case ${ret_val} in
+  0)
+    # Daemon is already running.
+    echo -n $'daemon is already running'
+    success
+    echo
+    ;;
+  1)
+    # Daemon is not running, but pidfile exists.
+    echo -n $'Clearing stale pidfile, '
+    rm -f ${pidfile} ${lockfile} &>/dev/null || true
+    start || ret_val=${?}
+    ;;
+  *)
+    # The status command returns 3 for the correct state (daemon is stopped
+    # and there is no pidfile).  Go ahead and try to start even if we get
+    # something other than 3.
+
+    echo -n $"Starting $NAME: "
+
     # Run as process
     $DAEMON ${STATSJS} ${STATSD_CONFIG} ${STATSD_LOGFILE} &
-    RETVAL=$?
-    # Store PID
-    echo $! > ${pidfile}
- 
-    # Success
-    [ $RETVAL = 0 ] && success "statsd started"
-  fi
- 
-  echo
-  return $RETVAL
+    ret_val=$?
+    if [ ${ret_val} == 0 ] ; then
+      # Store PID *only* when we have a successful startup *and* don't
+      # do this if the application is already writing the file via the
+      # pidopts setting.
+      #[ -n ${pidopts+set} ] || echo ${!} > ${pidfile}
+      echo ${!} > ${pidfile}
+      echo -n $'started'
+      success 
+    else
+      echo -n $'could not be started'
+      failure
+    fi
+    echo
+    ;;
+  esac
+
+  return ${ret_val}
 }
  
 stop() {
+  local ret_val=0
+
   echo -n $"Stopping $NAME: "
   killproc -p ${pidfile}
-  RETVAL=$?
+  ret_val=$?
+  if [ ${ret_val} == 0 ] ; then
+    rm -f ${pidfile} ${lockfile} &>/dev/null || true
+    echo -n $"stopped"
+    success
+  else
+    echo -n $"unable to stop"
+    failure
+  fi
   echo
-  [ $RETVAL = 0 ] && rm -f ${pidfile}
+
+  return ${ret_val}
 }
- 
+
+restart() {
+  local ret_val=0
+  local current_status=0
+
+  status &>/dev/null || current_status=${?}
+
+  case ${current_status} in
+  0)
+    # status returns 0 when the daemon is currently running
+    ( stop && start ) || ret_val=${?}
+    ;;
+  3)
+    if [ "${1}" == conditional ] ; then
+      # Do not return an error as this is desired behavior.
+      #failure "${NAME} is not currently running, will not start"
+      #ret_val=1
+      echo -n $"Cond-restart ${NAME}: daemon not currently running."
+      success
+      echo
+    else
+      ( stop && start ) || ret_val=${?}
+    fi
+    ;;
+  1)
+    # The status code for stale pid is 1.  For a restart, go ahead
+    # and try to start the daemon. try to start.  For cond-restart,
+    # throw an error and abort as it's unclear what the correct
+    # action should be when in this state.
+    if [ "${1}" == conditional ] ; then
+      echo -n $"Cond-restart ${NAME}: daemon not running but process locked."
+      failure
+      echo
+      ret_val=1
+    else
+      stop && start || ret_val=${?}
+    fi
+    ;;
+  *)
+    # Unknown status.  Don't try to start, no matter how called.
+    [ "${1}" == conditional ] && echo -n $'Cond-restart ' || echo -n $'Restarting '
+    echo -n $"${NAME}: daemon is in an unknown state (${current_status}), will not continue."
+    failure
+    echo
+    ret_val=${current_status}
+    ;;
+  esac
+
+  return ${ret_val}
+}
+
+usage() {
+  echo $"Usage: ${NAME} {start|stop|restart|condrestart|status}"
+  return 1
+}
+
 # See how we were called.
 case "$1" in
-  start)
-  start
-  ;;
-  stop)
-  stop
-  ;;
-  status)
-  status -p ${pidfile} ${prog}
-  RETVAL=$?
-  ;;
-  restart)
-  stop
-  start
+  start|stop|restart|status)
+  ${1}
   ;;
   condrestart)
-  if [ -f ${pidfile} ] ; then
-    stop
-    start
-  fi
+  restart conditional
   ;;
   *)
-  echo $"Usage: $prog {start|stop|restart|condrestart|status}"
-  exit 1
+  usage
+  ;;
 esac
- 
-exit $RETVAL
