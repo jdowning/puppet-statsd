@@ -5,7 +5,6 @@ Wants=network.target
 
 [Service]
 Type=simple
-User=_statsd
 ExecStart=/usr/bin/nodejs /usr/local/lib/node_modules/statsd/stats.js /etc/statsd/localConfig.js
 Restart=on-failure
 RestartSec=10
