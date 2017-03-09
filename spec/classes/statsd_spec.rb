@@ -23,7 +23,7 @@ describe 'statsd', :type => :class do
 
       if osfamily == 'Debian'
         it { should contain_file('/etc/default/statsd') }
-        it { should contain_file('/etc/init/statsd.conf') }
+        it { should contain_file('/lib/systemd/system/statsd.service') }
       end
 
       if osfamily == 'RedHat'

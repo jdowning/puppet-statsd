@@ -99,11 +99,11 @@ class statsd::params {
       $init_script    = 'puppet:///modules/statsd/statsd-init-rhel'
     }
     'Debian': {
-      $init_location  = '/etc/init/statsd.conf'
+      $init_location  = '/lib/systemd/system/statsd.service'
       $init_sysconfig = '/etc/default/statsd'
       $init_mode      = '0644'
-      $init_provider  = 'upstart'
-      $init_script    = 'puppet:///modules/statsd/statsd-upstart'
+      $init_provider  = 'systemd'
+      $init_script    = 'puppet:///modules/statsd/statsd-systemd'
     }
     default: {
       fail('Unsupported OS Family')
