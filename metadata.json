@@ -1,6 +1,6 @@
 {
   "name": "jdowning-statsd",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "source": "https://github.com/justindowning/puppet-statsd",
   "author": "Justin Downing",
   "license": "Apache-2.0",
