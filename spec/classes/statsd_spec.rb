@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'statsd', :type => :class do
-
   ['Debian', 'RedHat'].each do |osfamily|
     context "using #{osfamily}" do
       let(:facts) { {
@@ -9,9 +8,9 @@ describe 'statsd', :type => :class do
       } }
 
       it { should contain_class('statsd') }
+      it { should contain_class('statsd::backends') }
+      it { should contain_class('statsd::config') }
       it { should contain_class('statsd::params') }
-      it { should contain_statsd__backends }
-      it { should contain_statsd__config }
       it { should contain_package('statsd').with_ensure('present') }
       it { should contain_service('statsd').with_ensure('running') }
       it { should contain_service('statsd').with_enable(true) }
@@ -31,27 +30,33 @@ describe 'statsd', :type => :class do
         it { should contain_file('/etc/init.d/statsd') }
       end
 
+      describe 'disabling the management of backends' do
+        let(:params) {{
+          :manage_backends => false,
+        }}
+        it { should_not contain_class('statsd::backends') }
+      end
+
       describe 'stopping the statsd service' do
-	let(:params) {{
-	  :service_ensure => 'stopped',
+        let(:params) {{
+          :service_ensure => 'stopped',
         }}
         it { should contain_service('statsd').with_ensure('stopped') }
       end
 
       describe 'disabling the statsd service' do
-	let(:params) {{
-	  :service_enable => false,
+        let(:params) {{
+          :service_enable => false,
         }}
         it { should contain_service('statsd').with_enable(false) }
       end
 
       describe 'disabling the management of the statsd service' do
-	let(:params) {{
-	  :manage_service => false,
+        let(:params) {{
+          :manage_service => false,
         }}
         it { should_not contain_service('statsd') }
       end
     end
   end
-
 end
