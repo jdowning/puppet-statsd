@@ -2,7 +2,7 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.0.0
+  - 2.1.10
 env:
   - PUPPET_VERSION="3.3.2"
   - PUPPET_VERSION="3.4.3"

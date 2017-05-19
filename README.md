@@ -1,6 +1,6 @@
 # puppet-statsd
 
-[![Build Status](https://travis-ci.org/justindowning/puppet-statsd.png)](https://travis-ci.org/justindowning/puppet-statsd) [![Puppet Forge](http://img.shields.io/puppetforge/v/jdowning/statsd.svg?style=flat)](https://forge.puppetlabs.com/jdowning/statsd)
+[![Build Status](https://travis-ci.org/justindowning/puppet-statsd.png)](https://travis-ci.org/justindowning/puppet-statsd) [![Puppet Forge](https://img.shields.io/puppetforge/v/jdowning/statsd.svg)](https://forge.puppetlabs.com/jdowning/statsd) [![Puppet Forge](https://img.shields.io/puppetforge/dt/jdowning/statsd.svg)](https://forge.puppetlabs.com/jdowning/statsd)
 
 ## Description
 
@@ -82,14 +82,6 @@ class { 'statsd':
 }
 ```
 
-## Testing
-
-```
-bundle install
-bundle exec librarian-puppet install
-vagrant up
-```
-
 ## Custom Nodejs Environment
 
 Use the `$env_append` parameter to add custom environment variables or run scripts in the `/etc/default/statsd` file.  For example, you could enable Redhat's software collections and add a custom path like so:
@@ -103,4 +95,12 @@ class { 'statsd':
     'PATH=/opt/my/path:$PATH',
   ],
 }
+```
+
+## Testing
+
+```
+bundle install
+bundle exec librarian-puppet install
+vagrant up
 ```
