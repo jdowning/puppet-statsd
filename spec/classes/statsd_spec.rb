@@ -23,11 +23,13 @@ describe 'statsd', :type => :class do
       if osfamily == 'Debian'
         it { should contain_file('/etc/default/statsd') }
         it { should contain_file('/lib/systemd/system/statsd.service') }
+        it { should contain_service('statsd').with_provider('systemd') }
       end
 
       if osfamily == 'RedHat'
         it { should contain_file('/etc/sysconfig/statsd') }
         it { should contain_file('/etc/init.d/statsd') }
+        it { should contain_service('statsd').with_provider('redhat') }
       end
 
       describe 'disabling the management of backends' do
@@ -59,4 +61,29 @@ describe 'statsd', :type => :class do
       end
     end
   end
+
+  context 'using Ubuntu' do
+
+      describe 'when release version < 16' do
+      let(:facts) { {
+        :osfamily                  => 'Debian',
+        :operatingsystem           => 'Ubuntu',
+        :operatingsystemmajrelease => '14.04',
+      } }
+      it { should contain_file('/etc/init/statsd.conf') }
+      it { should contain_service('statsd').with_provider('upstart') }
+    end
+
+    describe 'when release version >= 16' do
+      let(:facts) { {
+        :osfamily                  => 'Debian',
+        :operatingsystem           => 'Ubuntu',
+        :operatingsystemmajrelease => '16.04',
+      } }
+      it { should contain_file('/lib/systemd/system/statsd.service') }
+      it { should contain_service('statsd').with_provider('systemd') }
+    end
+
+  end
+
 end
