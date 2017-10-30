@@ -103,7 +103,7 @@
 <% if @backends.grep(/repeater/).any? -%>
 , repeater: [<%= @repeater.map { |r| r.to_json }.join(", ") %>]
   <% if defined? @repeaterProtocol -%>
-, repeaterProtocol: <%= @repeaterProtocol %>
+, repeaterProtocol: "<%= @repeaterProtocol %>"
   <% end -%>
 <% end -%>
 
