@@ -5,7 +5,12 @@ Wants=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/nodejs /usr/local/lib/node_modules/statsd/stats.js /etc/statsd/localConfig.js
+EnvironmentFile=<%= @init_sysconfig %>
+<%-
+   env_string = ""
+   @env_append.each { |x| env_string << "#{x} -- " }
+-%>
+ExecStart=<%= env_string %><%= @nodejs_bin %> $STATSJS $STATSD_CONFIG
 Restart=on-failure
 RestartSec=10
 

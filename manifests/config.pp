@@ -64,11 +64,12 @@ class statsd::config (
   $repeaterProtocol                  = $statsd::repeaterProtocol,
   $config                            = $statsd::config,
 
-  $env_append  = $statsd::env_append,
-  $nodejs_bin  = $statsd::nodejs_bin,
-  $npm_bin     = $statsd::npm_bin,
-  $statsjs     = "${statsd::node_module_dir}/statsd/stats.js",
-  $logfile     = $statsd::logfile,
+  $env_append     = $statsd::env_append,
+  $nodejs_bin     = $statsd::nodejs_bin,
+  $npm_bin        = $statsd::npm_bin,
+  $statsjs        = "${statsd::node_module_dir}/statsd/stats.js",
+  $logfile        = $statsd::logfile,
+  $init_sysconfig = $statsd::init_sysconfig
 ) {
 
   file { '/etc/statsd':
@@ -85,10 +86,10 @@ class statsd::config (
   }
 
   file { $statsd::init_location:
-    source => $statsd::init_script,
-    mode   => $statsd::init_mode,
-    owner  => 'root',
-    group  => 'root',
+    content => template($statsd::init_script),
+    mode    => $statsd::init_mode,
+    owner   => 'root',
+    group   => 'root',
   }
 
   file {  $statsd::init_sysconfig:
