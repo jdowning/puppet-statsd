@@ -69,7 +69,7 @@ class statsd::config (
   $npm_bin        = $statsd::npm_bin,
   $statsjs        = "${statsd::node_module_dir}/statsd/stats.js",
   $logfile        = $statsd::logfile,
-  $init_provider  = $statsd::init_provider
+  $init_provider  = $statsd::init_provider,
   $init_sysconfig = $statsd::init_sysconfig
 ) {
 
