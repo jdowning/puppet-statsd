@@ -69,6 +69,7 @@ class statsd::config (
   $npm_bin        = $statsd::npm_bin,
   $statsjs        = "${statsd::node_module_dir}/statsd/stats.js",
   $logfile        = $statsd::logfile,
+  $init_provider  = $statsd::init_provider
   $init_sysconfig = $statsd::init_sysconfig
 ) {
 
@@ -85,11 +86,23 @@ class statsd::config (
     group   => 'root',
   }
 
+  exec { 'statsd-systemctl-reload':
+    command     => 'systemctl daemon-reload',
+    path        => $::path,
+    refreshonly => true,
+  }
+
+  $_notify = $init_provider ? {
+    /systemd/ => 'Exec[statsd-systemctl-reload]',
+    default   => undef
+  }
+
   file { $statsd::init_location:
     content => template($statsd::init_script),
     mode    => $statsd::init_mode,
     owner   => 'root',
     group   => 'root',
+    notify  => $_notify
   }
 
   file {  $statsd::init_sysconfig:
