@@ -96,7 +96,7 @@ class statsd::params {
       $init_sysconfig = '/etc/sysconfig/statsd'
       $init_mode      = '0755'
       $init_provider  = 'redhat'
-      $init_script    = 'puppet:///modules/statsd/statsd-init-rhel'
+      $init_script    = 'statsd/statsd-init-rhel.erb'
     }
     'Debian': {
       if $::operatingsystem == 'Ubuntu' and versioncmp($::operatingsystemmajrelease, '16') < 0 {
@@ -104,13 +104,13 @@ class statsd::params {
         $init_sysconfig = '/etc/default/statsd'
         $init_mode      = '0644'
         $init_provider  = 'upstart'
-        $init_script    = 'puppet:///modules/statsd/statsd-upstart'
+        $init_script    = 'statsd/statsd-upstart.erb'
       } else {
         $init_location  = '/lib/systemd/system/statsd.service'
         $init_sysconfig = '/etc/default/statsd'
         $init_mode      = '0644'
         $init_provider  = 'systemd'
-        $init_script    = 'puppet:///modules/statsd/statsd-systemd'
+        $init_script    = 'statsd/statsd-systemd.erb'
       }
     }
     default: {

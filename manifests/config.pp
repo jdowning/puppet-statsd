@@ -64,11 +64,13 @@ class statsd::config (
   $repeaterProtocol                  = $statsd::repeaterProtocol,
   $config                            = $statsd::config,
 
-  $env_append  = $statsd::env_append,
-  $nodejs_bin  = $statsd::nodejs_bin,
-  $npm_bin     = $statsd::npm_bin,
-  $statsjs     = "${statsd::node_module_dir}/statsd/stats.js",
-  $logfile     = $statsd::logfile,
+  $env_append     = $statsd::env_append,
+  $nodejs_bin     = $statsd::nodejs_bin,
+  $npm_bin        = $statsd::npm_bin,
+  $statsjs        = "${statsd::node_module_dir}/statsd/stats.js",
+  $logfile        = $statsd::logfile,
+  $init_provider  = $statsd::init_provider,
+  $init_sysconfig = $statsd::init_sysconfig
 ) {
 
   file { '/etc/statsd':
@@ -84,11 +86,23 @@ class statsd::config (
     group   => 'root',
   }
 
+  exec { 'statsd-systemctl-reload':
+    command     => 'systemctl daemon-reload',
+    path        => $::path,
+    refreshonly => true,
+  }
+
+  $_notify = $init_provider ? {
+    /systemd/ => 'Exec[statsd-systemctl-reload]',
+    default   => undef
+  }
+
   file { $statsd::init_location:
-    source => $statsd::init_script,
-    mode   => $statsd::init_mode,
-    owner  => 'root',
-    group  => 'root',
+    content => template($statsd::init_script),
+    mode    => $statsd::init_mode,
+    owner   => 'root',
+    group   => 'root',
+    notify  => $_notify
   }
 
   file {  $statsd::init_sysconfig:
