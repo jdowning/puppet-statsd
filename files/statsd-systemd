@@ -4,8 +4,9 @@ Documentation=https://github.com/etsy/statsd/
 Wants=network.target
 
 [Service]
+EnvironmentFile=/etc/default/statsd
 Type=simple
-ExecStart=/usr/bin/nodejs /usr/local/lib/node_modules/statsd/stats.js /etc/statsd/localConfig.js
+ExecStart=/usr/bin/nodejs $STATSJS $STATSD_CONFIG
 Restart=on-failure
 RestartSec=10
 
