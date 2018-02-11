@@ -7,6 +7,6 @@ STATSD_CONFIG="<%= @configfile %>"
 STATSD_LOGFILE="<%= @logfile %>"
 DAEMON_ARGS="$STATSJS $STATSD_CONFIG $STATSD_LOGFILE"
 
-<% @sysconfig_append.each do |val| -%>
+<% @env_append.each do |val| -%>
 <%= val %>
 <% end -%>

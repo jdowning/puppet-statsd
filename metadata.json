@@ -1,6 +1,6 @@
 {
   "name": "jdowning-statsd",
-  "version": "2.6.0",
+  "version": "3.1.0",
   "source": "https://github.com/justindowning/puppet-statsd",
   "author": "Justin Downing",
   "license": "Apache-2.0",
@@ -35,11 +35,10 @@
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "10.04", "12.04", "14.04" ]
+      "operatingsystemrelease": [ "10.04", "12.04", "14.04", "16.04" ]
     }
   ],
   "requirements": [
-    { "name": "pe", "version_requirement": ">=3.0.0" },
     { "name": "puppet", "version_requirement": ">=3.0.0" }
   ]
 }

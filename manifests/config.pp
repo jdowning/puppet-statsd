@@ -64,8 +64,9 @@ class statsd::config (
   $repeaterProtocol                  = $statsd::repeaterProtocol,
   $config                            = $statsd::config,
 
-  $sysconfig_append = $statsd::sysconfig_append,
+  $env_append  = $statsd::env_append,
   $nodejs_bin  = $statsd::nodejs_bin,
+  $npm_bin     = $statsd::npm_bin,
   $statsjs     = "${statsd::node_module_dir}/statsd/stats.js",
   $logfile     = $statsd::logfile,
 ) {

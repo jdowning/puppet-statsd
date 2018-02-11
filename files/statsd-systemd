@@ -1,0 +1,14 @@
+[Unit]
+Description=Network daemon for aggregating statistics
+Documentation=https://github.com/etsy/statsd/
+Wants=network.target
+
+[Service]
+EnvironmentFile=/etc/default/statsd
+Type=simple
+ExecStart=/usr/bin/nodejs $STATSJS $STATSD_CONFIG
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

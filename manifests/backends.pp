@@ -6,7 +6,7 @@ class statsd::backends {
   # Make sure $statsd::influxdb_host is set
   if $backends =~ /influxdb/ {
     exec { 'install-statsd-influxdb-backend':
-      command => "/usr/bin/npm install --save ${statsd::influxdb_package_name}",
+      command => "${statsd::npm_bin} install --save ${statsd::influxdb_package_name}",
       cwd     => "${statsd::node_module_dir}/statsd",
       unless  => "/usr/bin/test -d ${node_base}/statsd-influxdb-backend",
       require => Package['statsd'],
@@ -16,7 +16,7 @@ class statsd::backends {
   # Make sure $statsd::librato_email and $statsd::librato_token are set
   if $backends =~ /librato/ {
     exec { 'install-statsd-librato-backend':
-      command => '/usr/bin/npm install --save statsd-librato-backend',
+      command => "${statsd::npm_bin} install --save statsd-librato-backend",
       cwd     => "${statsd::node_module_dir}/statsd",
       unless  => "/usr/bin/test -d ${node_base}/statsd-librato-backend",
       require => Package['statsd'],
@@ -26,7 +26,7 @@ class statsd::backends {
   # Make sure $statsd::stackdriver_apiKey is set
   if $backends =~ /stackdriver/ {
     exec { 'install-statsd-stackdriver-backend':
-      command => '/usr/bin/npm install --save stackdriver-statsd-backend',
+      command => "${statsd::npm_bin} install --save stackdriver-statsd-backend",
       cwd     => "${statsd::node_module_dir}/statsd",
       unless  => "/usr/bin/test -d ${node_base}/stackdriver-statsd-backend",
       require => Package['statsd'],
