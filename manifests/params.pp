@@ -50,7 +50,7 @@ class statsd::params {
   $influxdb_port                     = '8086'
   $influxdb_database                 = 'statsd'
   $influxdb_username                 = 'root'
-  $influxdb_password                 = hiera('influx_db_pwd')
+  $influxdb_password                 = statsd::influxdb_password
   $influxdb_version                  = '0.8'
   $influxdb_flush                    = true
   $influxdb_proxy                    = false
